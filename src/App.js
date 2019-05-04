@@ -101,14 +101,12 @@ class App extends React.Component {
               <Divider />
               <List>
                 {routes.map( route => (
-                    <Link to={route.path}>
-                      <ListItem button>
-                        <ListItemIcon>
-                          {route.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={route.label} />
-                      </ListItem>
-                    </Link>
+                    <ListItem button component={Link} to={route.path}>
+                      <ListItemIcon>
+                        {route.icon}
+                      </ListItemIcon>
+                      <ListItemText primary={route.label} />
+                    </ListItem>
                 ))}
               </List>
               <Divider />
