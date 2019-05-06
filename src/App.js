@@ -117,8 +117,8 @@ class App extends React.Component {
               </div>
               <Divider />
               <List>
-                {routes.map( route => (
-                    <ListItem button component={Link} to={route.path}>
+                {routes.map( (route, index) => (
+                    <ListItem button key={index} component={Link} to={route.path}>
                       <ListItemIcon>
                         {route.icon}
                       </ListItemIcon>
