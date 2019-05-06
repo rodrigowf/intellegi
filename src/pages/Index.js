@@ -32,24 +32,28 @@ const styles = theme => ({
         width: "100%",
         alignItems: 'center',
         textAlign: 'center',
+
+        ListIcon: {
+            fontSize: 30,
+        }
     },
 });
 
 const menuItems = [
     {
-        icon: <ListIcon />,
+        icon: ListIcon,
         title: "Todas as PL's",
         color: purple[200],
         route: '/propostas',
     },
     {
-        icon: <ListIcon />,
+        icon: ListIcon,
         title: "Por Comissão",
         color: blue[200],
         route: '/comissoes',
     },
     {
-        icon: <ListIcon />,
+        icon: ListIcon,
         title: "Ablabla abla",
         color: yellow[200],
         route: '',
@@ -75,7 +79,7 @@ class Index extends React.Component {
                 {menuItems.map((item, index) => (
                     <Fab component={Link} to={item.route} key={index} style={{backgroundColor: item.color}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
-                            {item.icon}
+                            {React.createElement( item.icon, {fontSize: "large"})}
                             <Typography color="inherit" component="h6" variant="h6">
                                 {item.title}
                             </Typography>
