@@ -2,9 +2,9 @@ import React from 'react';
 import loadable from '@loadable/component'
 
 import PhotoAlbumIcon from '@material-ui/icons/PhotoAlbum';
-import CheckIcon from '@material-ui/icons/Check';
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ListIcon from "@material-ui/icons/List";
+import PaymentIcon from  "@material-ui/icons/Payment";
 
 const PageLayoutExamples = loadable(() => import('./examples/PageLayoutExamples'));
 const Album = loadable(() => import('./examples/album/Album'));
@@ -49,9 +49,9 @@ const routes = [
     },
     {
         path: "/ex/checkout",
-        label: 'Checkout',
+        label: 'Donate',
         component: Checkout,
-        icon: <CheckIcon />,
+        icon: <PaymentIcon/>,
     },
 ];
 
