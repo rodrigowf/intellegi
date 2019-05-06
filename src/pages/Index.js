@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import {withStyles} from "@material-ui/core";
+import classNames from 'classnames';
 import Fab from '@material-ui/core/Fab';
+import Typography from '@material-ui/core/Typography';
 
 import ListIcon from "@material-ui/icons/List";
 import {Link} from "react-router-dom";
@@ -41,7 +42,7 @@ const menuItems = [
     },
     {
         icon: <ListIcon />,
-        title: "Todas as PL's",
+        title: "Ablabla abla",
         color: 'primary',
         route: '',
     },
@@ -63,8 +64,8 @@ class Index extends React.Component {
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Navegação
                 </Typography>
-                {menuItems.map(item => (
-                    <Fab component={Link} to={item.route} color={item.color} aria-label="Add" className={[classes.fab, classes.margin]}>
+                {menuItems.map((item, index) => (
+                    <Fab component={Link} to={item.route} key={index} color={item.color} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
                             {item.icon}
                             <Typography color="inherit" component="h6" variant="h6">

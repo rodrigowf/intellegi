@@ -6,9 +6,10 @@ import {withStyles} from "@material-ui/core";
 import TablePagination from '@material-ui/core/TablePagination';
 import TableList from '../components/TableList';
 import TablePaginationActions from '../components/TablePaginationActions';
+import getDataRequest from '../helpers/api';
+import getUrlVar from '../helpers/helpers';
 
-const API = 'https://dadosabertos.camara.leg.br/api/v2/';
-const location = 'proposicoes';
+const apiArea = 'proposicoes';
 
 const styles = theme => ({
     grow: {
@@ -26,19 +27,6 @@ const styles = theme => ({
     },
 });
 
-function getUrlVar(str, param) {
-    let value = 0;
-    const urlParts = str.split("?");
-    const params = urlParts[1].split("&");
-    params.forEach((part) => {
-        const pair = part.split("=");
-        if(pair[0] === param){
-            value = pair[1];
-        }
-    });
-    return value;
-}
-
 class Propostas extends React.Component {
     state = {
         data: [],
@@ -49,11 +37,7 @@ class Propostas extends React.Component {
     };
 
     getDataRequest(page=this.state.page, rowsPerPage=this.state.rowsPerPage){
-        let uri = API+location+"?pagina="+(page+1).toString()+"&itens="+rowsPerPage+"&ordem=DESC&ordenarPor=id";
-        // console.log(uri);
-
-        fetch(uri)
-            .then(response => response.json())
+        getDataRequest(apiArea, page, rowsPerPage)
             .then(ret => {
                 let data = [];
                 const lastPageLink = ret.links[3].href;
@@ -69,7 +53,7 @@ class Propostas extends React.Component {
     }
 
     componentDidMount() {
-        this.getDataRequest(this.state.page);
+        this.getDataRequest();
     };
 
     handleChangePage = (event, page) => {
@@ -78,7 +62,7 @@ class Propostas extends React.Component {
     };
 
     handleChangeRowsPerPage = event => {
-        this.setState({ page: 0, rowsPerPage: event.target.value });
+        this.setState({ page: 0, rowsPerPage: parseInt(event.target.value) });
         this.getDataRequest(0, event.target.value);
     };
 
@@ -104,9 +88,7 @@ class Propostas extends React.Component {
                                 count={count}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
-                                SelectProps={{
-                                    native: true,
-                                }}
+                                SelectProps={{native: true}}
                                 onChangePage={this.handleChangePage}
                                 onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                 ActionsComponent={TablePaginationActions}

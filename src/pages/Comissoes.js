@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import {withStyles} from "@material-ui/core";
-import Fab from '@material-ui/core/Fab';
-
-import ListIcon from "@material-ui/icons/List";
 import {Link} from "react-router-dom";
+import {withStyles} from "@material-ui/core";
+import classNames from 'classnames';
+import Fab from '@material-ui/core/Fab';
+import Typography from '@material-ui/core/Typography';
+import ListIcon from "@material-ui/icons/List";
 
-const API = 'https://dadosabertos.camara.leg.br/api/v2/';
-const page = 'comissoes';
+import getDataRequest from '../helpers/api';
+
+const apiArea = 'orgaos';
 
 const styles = theme => ({
     margin: {
@@ -53,19 +54,20 @@ const comissoes = [
 class Comissoes extends React.Component {
     state = {
         data: [],
+        page: 0,
+        itemsPerPage: 1000,
     };
 
-    componentDidMount() {
-        let uri = API+page+"?pagina="+this.state.page+"&itens=15&ordem=DESC&ordenarPor=id";
-
-        console.log(uri);
-
-        fetch(uri)
-            .then(response => response.json())
+    getDataRequest(page=this.state.page, itensPerPage=this.state.itemsPerPage) {
+        getDataRequest(apiArea, page, itensPerPage)
             .then(data => {
                 this.setState({ data: data.dados });
-                console.log(this.state.data)
+                console.log(data)
             });
+    }
+
+    componentDidMount() {
+        this.getDataRequest();
     };
 
     render() {
@@ -76,11 +78,11 @@ class Comissoes extends React.Component {
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Comissões
                 </Typography>
-                {comissoes.map(item => (
-                    <Fab component={Link} to={item.route} color={item.color} aria-label="Add" className={[classes.fab, classes.margin]}>
+                {comissoes.map((item, index) => (
+                    <Fab component={Link} to={item.route} key={index} color={item.color} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
                             {item.icon}
-                            <Typography color="inherit" component="h9" variant="inherit">
+                            <Typography color="inherit" component="p" variant="inherit">
                                 {item.title}
                             </Typography>
                         </div>

@@ -55,7 +55,7 @@ class App extends React.Component {
                   [classes.appBarShift]: this.state.open,
                 })}
             >
-              <Toolbar className={!this.state.open && classes.appToolbarClosed}
+              <Toolbar className={classNames({[classes.appToolbarClosed]: !this.state.open})}
                   disableGutters={!this.state.open}>
                 <IconButton
                     color="inherit"
@@ -82,7 +82,7 @@ class App extends React.Component {
                   </div>
                   <InputBase
                       placeholder="Search…"
-                      onSubmit={this.hadleSearch}
+                      // onSubmit={this.hadleSearch}
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
