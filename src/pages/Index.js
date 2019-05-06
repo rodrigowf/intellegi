@@ -7,9 +7,6 @@ import Fab from '@material-ui/core/Fab';
 import ListIcon from "@material-ui/icons/List";
 import {Link} from "react-router-dom";
 
-const API = 'https://dadosabertos.camara.leg.br/api/v2/';
-const page = 'comissoes';
-
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit,
@@ -18,8 +15,8 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
     },
     fab: {
-        width: 65,
-        height: 65,
+        width: 130,
+        height: 130,
     },
     fabContent: {
         display:'block',
@@ -29,58 +26,48 @@ const styles = theme => ({
     },
 });
 
-const comissoes = [
+const menuItems = [
     {
         icon: <ListIcon />,
-        title: "CDH",
+        title: "Todas as PL's",
         color: 'primary',
         route: '/propostas',
     },
     {
         icon: <ListIcon />,
-        title: "CBH",
+        title: "Por Comissão",
         color: 'secondary',
         route: '/comissoes',
     },
     {
         icon: <ListIcon />,
-        title: "ABC",
+        title: "Todas as PL's",
         color: 'primary',
         route: '',
     },
 ];
 
-class Comissoes extends React.Component {
+class Index extends React.Component {
     state = {
-        data: [],
     };
 
-    componentDidMount() {
-        let uri = API+page+"?pagina="+this.state.page+"&itens=15&ordem=DESC&ordenarPor=id";
-
-        console.log(uri);
-
-        fetch(uri)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ data: data.dados });
-                console.log(this.state.data)
-            });
-    };
 
     render() {
         const { classes } = this.props;
 
         return (
             <React.Fragment>
-                <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    Comissões
+                <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
+                    Bem Vindo!
                 </Typography>
-                {comissoes.map(item => (
+                <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
+                    Navegação
+                </Typography>
+                {menuItems.map(item => (
                     <Fab component={Link} to={item.route} color={item.color} aria-label="Add" className={[classes.fab, classes.margin]}>
                         <div className={classes.fabContent}>
                             {item.icon}
-                            <Typography color="inherit" component="h9" variant="inherit">
+                            <Typography color="inherit" component="h6" variant="h6">
                                 {item.title}
                             </Typography>
                         </div>
@@ -91,8 +78,8 @@ class Comissoes extends React.Component {
     }
 }
 
-Comissoes.propTypes = {
+Index.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Comissoes);
+export default withStyles(styles)(Index);
