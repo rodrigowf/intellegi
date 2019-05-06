@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -21,12 +22,14 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import SearchIcon from '@material-ui/icons/Search';
 
 import styles from './AppStyle';
 import routes from './routes';
 
 class App extends React.Component {
   state = {
+    redirectToReferrer: false,
     open: false,
   };
 
@@ -40,6 +43,7 @@ class App extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    // let { redirectToReferrer } = this.state;
 
     return (
         <div className={classes.root}>
@@ -72,6 +76,19 @@ class App extends React.Component {
                 >
                   Intellegi
                 </Typography>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <InputBase
+                      placeholder="Search…"
+                      onSubmit={this.hadleSearch}
+                      classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput,
+                      }}
+                  />
+                </div>
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="secondary">
                     <NotificationsIcon />
@@ -133,6 +150,7 @@ class App extends React.Component {
                       key={index}
                       path={route.path}
                       component={route.component}
+                      exact={route.exact}
                   />
               ))}
             </main>

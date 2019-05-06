@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import * as serviceWorker from '../serviceWorker';
+import {withStyles} from "@material-ui/core";
 
 const styles = {
   item: {
@@ -125,10 +124,4 @@ PageLayoutExamples.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-ReactDOM.render(<PageLayoutExamples />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export default withStyles(styles)(PageLayoutExamples);
