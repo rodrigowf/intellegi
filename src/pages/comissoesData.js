@@ -374,20 +374,5 @@ const comissoes = [
             color: blue[300],
             route: '',
         }
-],
-];
-links: [
-    {
-        rel: self,
-        href: https://dadosabertos.camara.leg.br/api/v2/orgaos?codTipoOrgao=1&codTipoOrgao=2&ordem=ASC&ordenarPor=id
-    },
-    {
-        rel: first,
-        href: https://dadosabertos.camara.leg.br/api/v2/orgaos?codTipoOrgao=1&codTipoOrgao=2&ordem=ASC&ordenarPor=id&pagina=1&itens=1000
-    },
-    {
-        rel: last,
-        href: https://dadosabertos.camara.leg.br/api/v2/orgaos?codTipoOrgao=1&codTipoOrgao=2&ordem=ASC&ordenarPor=id&pagina=1&itens=1000
-    }
 ]
-}
+
