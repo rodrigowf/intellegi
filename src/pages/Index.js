@@ -90,11 +90,14 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
-                <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
-                    Bem Vindo!
+                <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom >
+                     intellegi
                 </Typography>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    Navegação
+                    A Política como ela é,
+                </Typography>
+                <Typography component="h3" variant="h3" align="left" color="textSecondary" gutterBottom>
+                    Transparente como deve ser.
                 </Typography>
                 {menuItems.map((item, index) => (
                     <Fab component={Link} to={item.route} key={index} style={{backgroundColor: item.color}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
