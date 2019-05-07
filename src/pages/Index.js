@@ -12,9 +12,15 @@ import blue from '@material-ui/core/colors/blue';
 import yellow from '@material-ui/core/colors/yellow';
 import pink from '@material-ui/core/colors/pink';
 import brown from '@material-ui/core/colors/brown';
-import purple from '@material-ui/core/colors/purple';
+import purple from '@material-ui/core/colors/purple'
+import indigo from '@material-ui/core/colors/indigo';
 
 import ListIcon from "@material-ui/icons/List";
+
+import AccountBoxIcon from "@material-ui/icons/AccountBox"
+import GroupWorkIcon from "@material-ui/icons/GroupWork"
+import FlagIcon from "@material-ui/icons/Flag"
+import DonutIcon from "@material-ui/icons/DonutLarge"
 
 const styles = theme => ({
     margin: {
@@ -41,24 +47,38 @@ const styles = theme => ({
 
 const menuItems = [
     {
-        icon: ListIcon,
-        title: "Todas as PL's",
-        color: purple[200],
+        icon: ListIcon ,
+        title: "Últimos",
+        color: red[200],
         route: '/propostas',
     },
     {
-        icon: ListIcon,
-        title: "Por Comissão",
+        icon: GroupWorkIcon ,
+        title: "Comissões",
         color: blue[200],
         route: '/comissoes',
     },
     {
-        icon: ListIcon,
-        title: "Ablabla abla",
+        icon: AccountBoxIcon ,
+        title: "Deputados",
         color: yellow[200],
         route: '',
     },
+    {
+        icon: FlagIcon,
+        title: "Partidos",
+        color: purple[200],
+        route: '',
+    },
+    {
+        icon: DonutIcon,
+        title: "Blocos",
+        color: indigo[200],
+        route: '',
+    },
+
 ];
+
 
 class Index extends React.Component {
     state = {
