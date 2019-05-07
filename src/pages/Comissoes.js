@@ -430,7 +430,7 @@ class Comissoes extends React.Component {
                     Comissões
                 </Typography>
                 {comissoes.map((item, index) => (
-                    <Fab component={Link} to={item.route} key={index} style={{backgroundColor:colorpicker.getColor()}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
+                    <Fab component={Link} to={item.route} key={index} style={{backgroundColor:colorpicker.getColor({ shades: ['200']})}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
                             {React.createElement( item.icon, {fontSize: "medium"})}
                             <Typography color="inherit" component="p" variant="inherit">
