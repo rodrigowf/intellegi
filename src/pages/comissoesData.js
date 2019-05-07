@@ -374,5 +374,5 @@ const comissoes = [
             color: blue[300],
             route: '',
         }
-]
+];
 
