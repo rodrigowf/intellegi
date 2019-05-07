@@ -25,9 +25,9 @@ const comissoes = [
 
     {
         id: 4,
-        uri: ""https://dadosabertos.camara.leg.br/api/v2/orgaos/4"",
+        uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/4",
     sigla: "MESA",
-        nome: "Mesa Diretora da Câmara dos Deputados",
+    nome: "Mesa Diretora da Câmara dos Deputados",
     apelido: "Mesa Diretora",
         codTipoOrgao: 1,
         tipoOrgao: "Comissão Diretora",
@@ -38,7 +38,7 @@ const comissoes = [
     },
 {
     id: 180,
-    uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/180"",
+    uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
     sigla:"PLEN",
     nome: "PLENÁRIO",
     apelido: "PLEN",
@@ -51,8 +51,8 @@ const comissoes = [
     },
 {
     id: 2001,
-    uri: ""https://dadosabertos.camara.leg.br/api/v2/orgaos/2001"",
-    sigla:" CAPADR,
+    uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2001",
+    sigla:" CAPADR",
     nome: "Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural",
     apelido: "AGRICULTURA, PECUÁRIA, ABASTECIMENTO DESENV. RURAL",
     codTipoOrgao: 2,
@@ -64,8 +64,8 @@ const comissoes = [
    },
 {
     id: 2002,
-    uri: ""https://dadosabertos.camara.leg.br/api/v2/orgaos/2002"",
-    sigla:" CCTCI,
+    uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2002",
+    sigla:" CCTCI",
     nome: "Comissão de Ciência e Tecnologia, Comunicação e Informática",
     apelido: "CIÊNCIA E TECNOLOGIA, COMUNICAÇÃO E INFORMÁTICA",
     codTipoOrgao: 2,
@@ -78,8 +78,8 @@ const comissoes = [
 {
     id: 2003,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2003",
-    sigla:" CCJC,
-    nome: "Comissão de Constituição e Justiça e de Cidadania"",
+    sigla:" CCJC",
+    nome: "Comissão de Constituição e Justiça e de Cidadania",
     apelido: "CONSTITUIÇÃO E JUSTIÇA E DE CIDADANIA",
     codTipoOrgao: 2,
     tipoOrgao: "Comissão Permanente",
@@ -91,8 +91,8 @@ const comissoes = [
 {
     id: 2004,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2004",
-    sigla:" CDC,
-    nome: "Comissão de Defesa do Consumidor"",
+    sigla:" CDC",
+    nome: "Comissão de Defesa do Consumidor",
     apelido: "DEFESA DO CONSUMIDOR",
     codTipoOrgao: 2,
     tipoOrgao: "Comissão Permanente",
@@ -104,7 +104,7 @@ const comissoes = [
 {
     id: 2006,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2006",
-    sigla:" CDU,
+    sigla:" CDU",
     nome: "Comissão de Desenvolvimento Urbano",
     apelido: "DESENVOLVIMENTO URBANO",
     codTipoOrgao: 2,
@@ -117,7 +117,7 @@ const comissoes = [
 {
     id: 2007,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2007",
-    sigla:" CDHM,
+    sigla:" CDHM",
     nome: "Comissão de Direitos Humanos e Minorias",
     apelido: "DIREITOS HUMANOS E MINORIAS",
     codTipoOrgao: 2,
@@ -130,7 +130,7 @@ const comissoes = [
 {
     id: 2008,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2008",
-    sigla:" CDEICS,
+    sigla:" CDEICS",
     nome: "Comissão de Desenvolvimento Econômico, Indústria, Comércio e Serviços",
     apelido: "DESENVOLV. ECONÔMICO, INDÚSTRIA, COMÉRCIO E SERV.",
     codTipoOrgao: 2,
@@ -143,7 +143,7 @@ const comissoes = [
 {
     id: 2009,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2009",
-    sigla:" CE,
+    sigla:" CE",
     nome: "Comissão de Educação",
     apelido: "EDUCAÇÃO",
     codTipoOrgao: 2,
@@ -156,7 +156,7 @@ const comissoes = [
 {
     id: 2010,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2010",
-    sigla:" CFT,
+    sigla:" CFT",
     nome: "Comissão de Finanças e Tributação",
     apelido: "FINANÇAS E TRIBUTAÇÃO",
     codTipoOrgao: 2,
@@ -169,7 +169,7 @@ const comissoes = [
 {
     id: 2011,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2011",
-    sigla:" CFFC,
+    sigla:" CFFC",
     nome: "Comissão de Fiscalização Financeira e Controle",
     apelido: "FISCALIZAÇÃO FINANCEIRA E CONTROLE",
     codTipoOrgao: 2,
@@ -182,7 +182,7 @@ const comissoes = [
 {
     id: 2012,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2012",
-    sigla:" CME,
+    sigla:" CME",
     nome: "Comissão de Minas e Energia",
     apelido: "MINAS E ENERGIA",
     codTipoOrgao: 2,
@@ -195,7 +195,7 @@ const comissoes = [
 {
     id: 2014,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2014",
-    sigla:" CSSF,
+    sigla:" CSSF",
     nome: "Comissão de Seguridade Social e Família",
     apelido: "SEGURIDADE SOCIAL E FAMÍLIA",
     codTipoOrgao: 2,
@@ -208,7 +208,7 @@ const comissoes = [
 {
     id: 2015,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2015",
-    sigla:" CTASP,
+    sigla:" CTASP",
     nome: "Comissão de Trabalho, de Administração e Serviço Público",
     apelido: "TRABALHO, ADMINISTRAÇÃO E SERVIÇO PÚBLICO",
     codTipoOrgao: 2,
@@ -221,7 +221,7 @@ const comissoes = [
 {
     id: 2016,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2016",
-    sigla:" CVT,
+    sigla:" CVT",
     nome: "Comissão de Viação e Transportes",
     apelido: "VIAÇÃO E TRANSPORTES",
     codTipoOrgao: 2,
@@ -234,7 +234,7 @@ const comissoes = [
 {
     id: 2017,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2017",
-    sigla:" CINDRA,
+    sigla:" CINDRA",
     nome: "Comissão de Integração Nacional, Desenvolvimento Regional e da Amazônia",
     apelido: "INTEGRAÇÃO NACIONAL, DESENV. REGIONAL E AMAZÔNIA",
     codTipoOrgao: 2,
@@ -247,7 +247,7 @@ const comissoes = [
 {
     id: 2018,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/2018",
-    sigla:" CREDN,
+    sigla:" CREDN",
     nome: "Comissão de Relações Exteriores e de Defesa Nacional",
     apelido: "RELAÇÕES EXTERIORES E DE DEFESA NACIONAL",
     codTipoOrgao: 2,
@@ -260,7 +260,7 @@ const comissoes = [
 {
     id: 5438,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/5438",
-    sigla:" CLP,
+    sigla:" CLP",
     nome: "Comissão de Legislação Participativa",
     apelido: "LEGISLAÇÃO PARTICIPATIVA",
     codTipoOrgao: 2,
@@ -273,7 +273,7 @@ const comissoes = [
 {
     id: 5503,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/5503",
-    sigla:" CSPCCO,
+    sigla:" CSPCCO",
     nome: "Comissão de Segurança Pública e Combate ao Crime Organizado",
     apelido: "SEGURANÇA PÚBLICA E COMBATE AO CRIME ORGANIZADO",
     codTipoOrgao: 2,
@@ -286,7 +286,7 @@ const comissoes = [
 {
     id: 6066,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/6066",
-    sigla:" CTUR,
+    sigla:" CTUR",
     nome: "Comissão de Turismo",
     apelido: "TURISMO",
     codTipoOrgao: 2,
@@ -299,7 +299,7 @@ const comissoes = [
 {
     id: 6174,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/6174",
-    sigla:" CMADS,
+    sigla:" CMADS",
     nome: "Comissão de Meio Ambiente e Desenvolvimento Sustentável",
     apelido: "MEIO AMBIENTE E DESENVOLVIMENTO SUSTENTÁVEL",
     codTipoOrgao: 2,
@@ -312,7 +312,7 @@ const comissoes = [
 {
     id: 536996,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/536996",
-    sigla:" CCULT,
+    sigla:" CCULT",
     nome: "Comissão de Cultura",
     apelido: "CULTURA",
     codTipoOrgao: 2,
@@ -325,7 +325,7 @@ const comissoes = [
 {
     id: 537236,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537236",
-    sigla:" CESPO,
+    sigla:" CESPO",
     nome: "Comissão do { Esporte",
     apelido
 }: ESPORTE",
@@ -339,7 +339,7 @@ const comissoes = [
 {
     id: 537480,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537480",
-    sigla:" CPD,
+    sigla:" CPD",
     nome: "Comissão de Defesa dos Direitos das Pessoas com Deficiência",
     apelido: "DEFESA DOS DIREITOS DAS PESSOAS COM DEFICIÊNCIA",
     codTipoOrgao: 2,
@@ -352,7 +352,7 @@ const comissoes = [
 {
     id: 537870,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537870",
-    sigla:" CMULHER,
+    sigla:" CMULHER",
     nome: "Comissão de Defesa dos Direitos da Mulher",
     apelido: "DEFESA DOS DIREITOS DA MULHER",
     codTipoOrgao: 2,
@@ -365,7 +365,7 @@ const comissoes = [
 {
     id: 537871,
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537871",
-    sigla:" CIDOSO,
+    sigla:" CIDOSO",
     nome: "Comissão de Defesa dos Direitos da Pessoa Idosa",
     apelido: "DEFESA DOS DIREITOS DA PESSOA IDOSA",
     codTipoOrgao: 2,
