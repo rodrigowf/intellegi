@@ -43,13 +43,6 @@ const styles = theme => ({
 
 const comissoes = [
     {
-        icon: ListIcon,
-        title: "ABC",
-        color: blue[300],
-        route: '',
-    },
-
-    {
         id: 4,
         uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/4",
         sigla: "MESA",
@@ -432,7 +425,7 @@ class Comissoes extends React.Component {
                 {comissoes.map((item, index) => (
                     <Fab component={Link} to={item.route} key={index} style={{backgroundColor:colorpicker.getColor({ shades: ['200']})}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
-                            {React.createElement( item.icon, {fontSize: "medium"})}
+                            {React.createElement( item.icon, {fontSize: "small"})}
                             <Typography color="inherit" component="p" variant="inherit">
                                 {item.sigla}
                             </Typography>
