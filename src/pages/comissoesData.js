@@ -327,8 +327,7 @@ const comissoes = [
     uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537236",
     sigla:" CESPO",
     nome: "Comissão do { Esporte",
-    apelido
-}: ESPORTE",
+    apelido: "ESPORTE",
     codTipoOrgao: 2,
     tipoOrgao: "Comissão Permanente",
     icon: ListIcon, 
@@ -362,18 +361,19 @@ const comissoes = [
         color: blue[300],
         route: '',
    },
-{
-    id: 537871,
-    uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537871",
-    sigla:" CIDOSO",
-    nome: "Comissão de Defesa dos Direitos da Pessoa Idosa",
-    apelido: "DEFESA DOS DIREITOS DA PESSOA IDOSA",
-    codTipoOrgao: 2,
-    tipoOrgao: "Comissão Permanente",
-    icon: ListIcon, 
-        title: "ABC",
-        color: blue[300],
-        route: '',
+        {
+            id: 537871,
+            uri: "https://dadosabertos.camara.leg.br/api/v2/orgaos/537871",
+            sigla: " CIDOSO",
+            nome: "Comissão de Defesa dos Direitos da Pessoa Idosa",
+            apelido: "DEFESA DOS DIREITOS DA PESSOA IDOSA",
+            codTipoOrgao: 2,
+            tipoOrgao: "Comissão Permanente",
+            icon: ListIcon,
+            title: "ABC",
+            color: blue[300],
+            route: '',
+        }
 ],
 ];
 links: [
