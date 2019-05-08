@@ -7,6 +7,7 @@ import * as colorpicker from "random-material-color";
 
 import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import comissoes from './comissoesData';
 
@@ -27,6 +28,12 @@ const styles = theme => ({
         alignItems: 'center',
         textAlign: 'center',
     },
+    lightTooltip: {
+        // backgroundColor: theme.palette.common.white,
+        // color: 'rgba(0, 0, 0, 0.87)',
+        // boxShadow: theme.shadows[1],
+        fontSize: 13,
+    },
 });
 
 class Comissoes extends React.Component {
@@ -39,6 +46,7 @@ class Comissoes extends React.Component {
                     Comissões
                 </Typography>
                 {comissoes.map((item, index) => (
+                    <Tooltip title={item.nome} aria-label={item.nome} classes={{ tooltip: classes.lightTooltip }}>
                     <Fab component={Link} to={item.route} key={index} style={
                         {backgroundColor:colorpicker.getColor({ shades: ['100']})}
                         } aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
@@ -49,6 +57,7 @@ class Comissoes extends React.Component {
                             </Typography>
                         </div>
                     </Fab>
+                    </Tooltip>
                 ))}
             </React.Fragment>
         );

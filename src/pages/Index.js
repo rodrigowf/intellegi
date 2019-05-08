@@ -27,8 +27,9 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
     },
     fab: {
-        width: 130,
-        height: 130,
+        width: 125,
+        height: 125,
+        textTransform: "none",
     },
     fabContent: {
         display:'block',
@@ -87,20 +88,18 @@ class Index extends React.Component {
 
         return (
             <React.Fragment>
-                <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom >
+                <Typography component="h2" variant="h1" align="left" color="textPrimary" gutterBottom>
                      intellegi
                 </Typography>
-                <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    A Política como ela é,
+                <Typography component="h2" variant="h4" align="left" color="textSecondary" gutterBottom>
+                    A Política como ela é,<br/> Transparente como deve ser.
                 </Typography>
-                <Typography component="h3" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    Transparente como deve ser.
-                </Typography>
+                <br/>
                 {menuItems.map((item, index) => (
                     <Fab component={Link} to={item.route} key={index} style={{backgroundColor: item.color}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
                         <div className={classes.fabContent}>
                             {React.createElement( item.icon, {fontSize: "large"})}
-                            <Typography color="inherit" component="h6" variant="h6">
+                            <Typography color="inherit" component="h1" variant="h6">
                                 {item.title}
                             </Typography>
                         </div>
