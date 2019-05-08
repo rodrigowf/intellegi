@@ -46,7 +46,7 @@ class Propostas extends React.Component {
                 this.setState({ count: lastPageNumber*this.state.rowsPerPage });
                 //Get the data --
                 Object.values(ret.dados).map((row) => (
-                    data.push([row.id, row.uri, row.ano, row.ementa])
+                    data.push([row.id, row.ano, row.ementa])
                 ));
                 this.setState({ data: data });
             });
@@ -79,12 +79,12 @@ class Propostas extends React.Component {
                 </Typography>
                 <Paper className={classes.root}>
                     <TableList
-                        head={['Id', 'URL', 'Ano', 'Ementa']}
+                        head={['Id', 'Ano', 'Ementa']}
                         data={data}
                         pagination={(
                             <TablePagination
                                 rowsPerPageOptions={[15, 25, 35]}
-                                colSpan={4}
+                                colSpan={3}
                                 count={count}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
