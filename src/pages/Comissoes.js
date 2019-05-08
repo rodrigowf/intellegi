@@ -3,38 +3,48 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import {withStyles} from "@material-ui/core";
 import classNames from 'classnames';
-import * as colorpicker from "random-material-color";
+// import * as colorpicker from "random-material-color";
 
-import Fab from '@material-ui/core/Fab';
+import IconButton from "@material-ui/core/es/IconButton/IconButton";
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import comissoes from './comissoesData';
 
-const styles = theme => ({
-    margin: {
-        margin: theme.spacing.unit,
-    },
-    extendedIcon: {
-        marginRight: theme.spacing.unit,
-    },
-    fab: {
-        width: 65,
-        height: 65,
-    },
-    fabContent: {
-        display:'block',
-        width: "100%",
-        alignItems: 'center',
-        textAlign: 'center',
-    },
-    lightTooltip: {
-        // backgroundColor: theme.palette.common.white,
-        // color: 'rgba(0, 0, 0, 0.87)',
-        // boxShadow: theme.shadows[1],
-        fontSize: 13,
-    },
-});
+const styles = function (theme) {
+    const styles = {
+        margin: {
+            margin: theme.spacing.unit,
+        },
+        extendedIcon: {
+            marginRight: theme.spacing.unit,
+        },
+        fab: {
+            width: 65,
+            height: 65,
+        },
+        fabContent: {
+            display:'block',
+            width: "100%",
+            alignItems: 'center',
+            textAlign: 'center',
+        },
+        fabText: {
+            fontSize: 12,
+        },
+        lightTooltip: {
+            // backgroundColor: theme.palette.common.white,
+            // color: 'rgba(0, 0, 0, 0.87)',
+            // boxShadow: theme.shadows[1],
+            fontSize: 14,
+        },
+    };
+    comissoes.forEach(function (comissao) {styles[comissao.sigla]={'&:hover, &$focusVisible': {backgroundColor: comissao.color}}});
+    return styles
+};
+
+console.log(styles);
+
 
 class Comissoes extends React.Component {
     render() {
@@ -45,18 +55,17 @@ class Comissoes extends React.Component {
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Comissões
                 </Typography>
-                {comissoes.map((item, index) => (
-                    <Tooltip title={item.nome} aria-label={item.nome} classes={{ tooltip: classes.lightTooltip }}>
-                    <Fab component={Link} to={item.route} key={index} style={
-                        {backgroundColor:colorpicker.getColor({ shades: ['100']})}
-                        } aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
+                {comissoes.map((comissao, index) => (
+                    <Tooltip title={comissao.nome} aria-label={comissao.nome} classes={{ tooltip: classes.lightTooltip }}>
+                    <IconButton component={Link} to={comissao.route} key={index} aria-label={comissao.title}
+                                className={classNames(classes.fab, classes.margin, classes[comissao.sigla])}>
                         <div className={classes.fabContent}>
-                            {React.createElement( item.icon, {fontSize: "small"})}
-                            <Typography color="inherit" component="p" variant="inherit">
-                                {item.sigla}
+                            {React.createElement( comissao.icon, {fontSize: "small"})}
+                            <Typography className={classes.fabText} color="inherit" component="small" variant="subtitle2">
+                                {comissao.sigla}
                             </Typography>
                         </div>
-                    </Fab>
+                    </IconButton>
                     </Tooltip>
                 ))}
             </React.Fragment>
