@@ -7,11 +7,8 @@ import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
 
 import red from '@material-ui/core/colors/red';
-import green from '@material-ui/core/colors/green';
 import blue from '@material-ui/core/colors/blue';
 import yellow from '@material-ui/core/colors/yellow';
-import pink from '@material-ui/core/colors/pink';
-import brown from '@material-ui/core/colors/brown';
 import purple from '@material-ui/core/colors/purple'
 import indigo from '@material-ui/core/colors/indigo';
 
