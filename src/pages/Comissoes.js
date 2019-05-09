@@ -60,7 +60,7 @@ class Comissoes extends React.Component {
                         avatar={<Avatar className={classes.icon}>
                             {React.createElement(comissao.icon, {fontSize: "default"})}
                         </Avatar>}
-                        label={comissao.nome}
+                        label={comissao.nome.replace('Comissão de ', '')}
                         //onClick={handleClick}
                         className={classNames(classes.chip, classes.margin, classes[comissao.sigla])}
                     />

@@ -20,7 +20,7 @@ const styles =  (theme) => ({
             flexWrap: 'wrap',
         },
         chip: {
-            backgroundColor: grey[200]
+            backgroundColor: grey[200],
         },
         margin: {
             margin: theme.spacing.unit,
@@ -48,7 +48,15 @@ class Deputados extends React.Component {
             ordem: 'ASC',
             ordenarPor: 'nome',
         }).then(ret => {
-            ret.dados && this.setState({ deputados: Object.values(ret.dados) });
+            if (ret.dados) {
+                let data = Object.values(ret.dados);
+                data.forEach(function(deputado, index) {
+                    data[index].nome = deputado.nome.toLowerCase()
+                        .split(' ').map(string =>
+                            string[0].toUpperCase()+string.slice(1)).join(' ')
+                });
+                this.setState({ deputados: Object.values(data) });
+            }
         });
     }
 
@@ -71,6 +79,7 @@ class Deputados extends React.Component {
                         label={deputado.nome}
                         //onClick={handleClick}
                         className={classNames(classes.chip, classes.margin, classes[deputado.sigla])}
+                        classes={{label: classes.chipLabel}}
                     />
                 ))}
             </React.Fragment>
