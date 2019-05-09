@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import {withStyles} from "@material-ui/core";
 import classNames from 'classnames';
-// import * as colorpicker from "random-material-color";
+import Requests from "../helpers/api";
 
 import Typography from '@material-ui/core/Typography';
 import Chip from "@material-ui/core/es/Chip/Chip";
+import Avatar from '@material-ui/core/Avatar';
 import grey from '@material-ui/core/colors/grey';
 
-import comissoes from './comissoesData';
 
-const styles = function (theme) {
-    const styles = {
+const apiArea = 'deputados';
+
+const styles =  (theme) => ({
         root: {
             display: 'flex',
             justifyContent: 'center',
@@ -33,33 +34,43 @@ const styles = function (theme) {
             // boxShadow: theme.shadows[1],
             fontSize: 14,
         },
+});
+
+class Deputados extends React.Component {
+    state = {
+        deputados: [],
     };
-    comissoes.forEach(function (comissao) {styles[comissao.sigla]={'&:hover, &$focusVisible': {backgroundColor: comissao.color}}});
-    return styles
-};
 
-console.log(styles);
+    componentDidMount(){
+        Requests.get(apiArea, {
+            pagina: 1,
+            itens: 600,
+            ordem: 'ASC',
+            ordenarPor: 'nome',
+        }).then(ret => {
+            ret.dados && this.setState({ deputados: Object.values(ret.dados) });
+        });
+    }
 
-
-class Comissoes extends React.Component {
     render() {
         const { classes } = this.props;
-
+        const { deputados } = this.state;
+        
         return (
             <React.Fragment>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    Comissões
+                    Deputados
                 </Typography>
-                {comissoes.map((comissao, index) => (
+                {deputados.map((deputado, index) => (
                     <Chip
                         key={index}
                         component={Link}
-                        to={comissao.route}
-                        aria-label={comissao.title}
-                        avatar={React.createElement( comissao.icon, {fontSize: "small"})}
-                        label={comissao.nome}
+                        to={'/deputados/'+deputado.id}
+                        aria-label={deputado.nome}
+                        avatar={<Avatar alt={deputado.nome} src={deputado.urlFoto} />}
+                        label={deputado.nome}
                         //onClick={handleClick}
-                        className={classNames(classes.chip, classes.margin, classes[comissao.sigla])}
+                        className={classNames(classes.chip, classes.margin, classes[deputado.sigla])}
                     />
                 ))}
             </React.Fragment>
@@ -67,8 +78,8 @@ class Comissoes extends React.Component {
     }
 }
 
-Comissoes.propTypes = {
+Deputados.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Comissoes);
+export default withStyles(styles)(Deputados);

@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core";
 import TablePagination from '@material-ui/core/TablePagination';
 import TableList from '../components/TableList';
 import TablePaginationActions from '../components/TablePaginationActions';
-import getDataRequest from '../helpers/api';
+import Requests from '../helpers/api';
 import getUrlVar from '../helpers/helpers';
 
 const apiArea = 'proposicoes';
@@ -37,8 +37,12 @@ class Propostas extends React.Component {
     };
 
     getDataRequest(page=this.state.page, rowsPerPage=this.state.rowsPerPage){
-        getDataRequest(apiArea, page, rowsPerPage)
-            .then(ret => {
+        Requests.get(apiArea, {
+            pagina: page+1,
+            itens: rowsPerPage,
+            ordem: 'DESC',
+            ordenarPor: 'id',
+        }).then(ret => {
                 let data = [];
                 const lastPageLink = ret.links[3].href;
                 const lastPageNumber = getUrlVar(lastPageLink, 'pagina');

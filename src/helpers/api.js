@@ -1,11 +1,16 @@
-const API = 'https://dadosabertos.camara.leg.br/api/v2/';
+class Requests {
 
-function getDataRequest(apiArea, pageNum, numItems, onrder='DESC', orderBy='id') {
+    static API = 'https://dadosabertos.camara.leg.br/api/v2/';
 
-    let uri = API+apiArea+"?pagina="+(pageNum+1)+"&itens="+numItems+"&ordem="+onrder+"&ordenarPor="+orderBy;
-    // console.log(uri);
-
-    return fetch(uri).then(response => response.json());
+    static get(apiArea, params) {
+        let uri = this.API + apiArea +
+            Object.entries(params)
+                .map(([value, key], index) =>
+                    ((index===0 ? '?' : '&')+value+'='+key))
+                .join('');
+        console.log(uri);
+        return fetch(uri).then(response => response.json());
+    }
 }
 
-export default getDataRequest;
+export default Requests;

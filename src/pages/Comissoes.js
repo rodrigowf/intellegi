@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 import Typography from '@material-ui/core/Typography';
 import Chip from "@material-ui/core/es/Chip/Chip";
+import Avatar from '@material-ui/core/Avatar';
 import grey from '@material-ui/core/colors/grey';
 
 import comissoes from './comissoesData';
@@ -19,7 +20,10 @@ const styles = function (theme) {
             flexWrap: 'wrap',
         },
         chip: {
-            backgroundColor: grey[200]
+            backgroundColor: grey[200],
+        },
+        icon: {
+            backgroundColor: grey[300],
         },
         margin: {
             margin: theme.spacing.unit,
@@ -34,12 +38,9 @@ const styles = function (theme) {
             fontSize: 14,
         },
     };
-    comissoes.forEach(function (comissao) {styles[comissao.sigla]={'&:hover, &$focusVisible': {backgroundColor: comissao.color}}});
+    comissoes.forEach(function (comissao) {styles[comissao.sigla]={'&:hover': {backgroundColor: comissao.color}}});
     return styles
 };
-
-console.log(styles);
-
 
 class Comissoes extends React.Component {
     render() {
@@ -56,7 +57,9 @@ class Comissoes extends React.Component {
                         component={Link}
                         to={comissao.route}
                         aria-label={comissao.title}
-                        avatar={React.createElement( comissao.icon, {fontSize: "small"})}
+                        avatar={<Avatar className={classes.icon}>
+                            {React.createElement(comissao.icon, {fontSize: "default"})}
+                        </Avatar>}
                         label={comissao.nome}
                         //onClick={handleClick}
                         className={classNames(classes.chip, classes.margin, classes[comissao.sigla])}

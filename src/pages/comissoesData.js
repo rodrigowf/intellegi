@@ -34,6 +34,9 @@ import VpnLockIcon from "@material-ui/icons/VpnLock";
 import DeviceHubIcon from "@material-ui/icons/DeviceHub";
 import DirectionsBusIcon from "@material-ui/icons/DirectionsBus";
 import BuildIcon from "@material-ui/icons/Build";
+// import FlagIcon from "@material-ui/icons/Flag"
+// import DonutIcon from "@material-ui/icons/DonutLarge"
+
 
 const comissoes = [
     {
