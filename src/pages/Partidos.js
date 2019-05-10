@@ -10,8 +10,7 @@ import Chip from "@material-ui/core/es/Chip/Chip";
 import Avatar from '@material-ui/core/Avatar';
 import grey from '@material-ui/core/colors/grey';
 
-
-const apiArea = 'deputados';
+const apiArea = 'partidos';
 
 const styles =  (theme) => ({
         root: {
@@ -36,13 +35,12 @@ const styles =  (theme) => ({
         },
 });
 
-class Deputados extends React.Component {
+class Partidos extends React.Component {
     state = {
-        deputados: [],
+        partidos: [],
     };
 
     componentDidMount(){
-        console.log('aquiiii!!');
         Requests.get(apiArea, {
             pagina: 1,
             itens: 600,
@@ -56,31 +54,30 @@ class Deputados extends React.Component {
                         .split(' ').map(string =>
                             string[0].toUpperCase()+string.slice(1)).join(' ')
                 });
-                this.setState({ deputados: Object.values(data) });
+                this.setState({ partidos: Object.values(data) });
             }
         });
     }
 
     render() {
         const { classes } = this.props;
-        const { deputados } = this.state;
+        let { partidos } = this.state;
         
         return (
             <React.Fragment>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                    Deputados
+                    Partidos
                 </Typography>
-                {deputados.map((deputado, index) => (
+                {partidos.map((partido, index) => (
                     <Chip
                         key={index}
                         component={Link}
-                        to={'/propostas/autor/'+deputado.nome}
-                        aria-label={deputado.nome}
-                        avatar={<Avatar alt={deputado.nome} src={deputado.urlFoto} />}
-                        label={deputado.nome}
+                        to={'/propostas/partido/'+partido.sigla}
+                        aria-label={partido.nome}
+                        avatar={<Avatar alt={partido.nome} src={'http://www.camara.leg.br/internet/Deputado/img/partidos/'+partido.sigla+'.gif'} />}
+                        label={partido.nome}
                         //onClick={handleClick}
-                        className={classNames(classes.chip, classes.margin, classes[deputado.sigla])}
-                        classes={{label: classes.chipLabel}}
+                        className={classNames(classes.chip, classes.margin, classes[partido.sigla])}
                     />
                 ))}
             </React.Fragment>
@@ -88,8 +85,8 @@ class Deputados extends React.Component {
     }
 }
 
-Deputados.propTypes = {
+Partidos.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Deputados);
+export default withStyles(styles)(Partidos);

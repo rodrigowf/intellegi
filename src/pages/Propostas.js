@@ -31,18 +31,21 @@ const styles = theme => ({
 class Propostas extends React.Component {
     state = {
         lastLocation: '',
+
         data: [],
         page: 0,
         rowsPerPage: 15,
         numPages: 0,
         count: 0,
+
+        subarea: '',
         autor: '',
     };
 
     getDataRequest(page=this.state.page, rowsPerPage=this.state.rowsPerPage){
 
         let pathname = this.props.location.pathname.split('/');
-        const ref = pathname.pop();
+        const autor = pathname.pop();
         const subarea = pathname.pop();
 
         console.log(pathname);
@@ -54,8 +57,14 @@ class Propostas extends React.Component {
             ordenarPor: 'id',
         };
         if (subarea === 'autor') {
-            reqParams.autor = ref.replace(/\s/g, '%20');
-            this.setState({autor:ref})
+            reqParams.autor = autor.replace(/\s/g, '%20');
+            this.setState({autor:autor});
+            this.setState({subarea:'autor'});
+        }
+        if (subarea === 'partido') {
+            reqParams.siglaPartidoAutor = autor.replace(/\s/g, '%20');
+            this.setState({autor:autor});
+            this.setState({subarea:'partido'});
         }
 
         Requests.get(apiArea, reqParams).then(ret => {
@@ -80,13 +89,14 @@ class Propostas extends React.Component {
     componentDidMount() {
         this.getDataRequest();
 
-        this.props.history.listen((location, action) => {
+        this.props.history.listen((location) => {
             // location is an object like window.location
             console.log(location.pathname);
             if (location.pathname === '/propostas') {
                 this.setState({lastLocation:location});
                 this.setState({data:[]});
                 this.setState({autor:''});
+                this.setState({subarea:''});
                 this.getDataRequest();
             }
         });
@@ -105,7 +115,7 @@ class Propostas extends React.Component {
 
     render() {
         // const { classes } = this.props;
-        let { data, rowsPerPage, page, count, autor } = this.state;
+        let { data, rowsPerPage, page, count, autor, subarea } = this.state;
         // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -115,7 +125,7 @@ class Propostas extends React.Component {
                 </Typography>
                 {autor !== '' &&
                     <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
-                        Autor: {autor}
+                        {(subarea === 'partido') && 'Partido'} Autor: {autor}
                     </Typography>
                 }
                 <Paper> {/*className={classes.root}*/}
@@ -148,4 +158,4 @@ Propostas.propTypes = {
     history: PropTypes.object.isRequired,
 };
 
-export default withRouter(Propostas);
+export default withStyles(styles)(withRouter(Propostas));

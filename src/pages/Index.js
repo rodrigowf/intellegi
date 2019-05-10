@@ -60,7 +60,7 @@ const menuItems = [
         icon: AccountBoxIcon ,
         title: "Deputados",
         color: yellow[200],
-        route: '/deputados',
+        route: '/partidos',
     },
     {
         icon: FlagIcon,
