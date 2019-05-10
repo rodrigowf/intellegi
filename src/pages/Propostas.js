@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
+import {withRouter} from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from "@material-ui/core";
 import TablePagination from '@material-ui/core/TablePagination';
@@ -29,35 +30,66 @@ const styles = theme => ({
 
 class Propostas extends React.Component {
     state = {
+        lastLocation: '',
         data: [],
         page: 0,
         rowsPerPage: 15,
         numPages: 0,
         count: 0,
+        autor: '',
     };
 
     getDataRequest(page=this.state.page, rowsPerPage=this.state.rowsPerPage){
-        Requests.get(apiArea, {
+
+        let pathname = this.props.location.pathname.split('/');
+        const ref = pathname.pop();
+        const subarea = pathname.pop();
+
+        console.log(pathname);
+
+        let reqParams = {
             pagina: page+1,
             itens: rowsPerPage,
             ordem: 'DESC',
             ordenarPor: 'id',
-        }).then(ret => {
-                let data = [];
+        };
+        if (subarea === 'autor') {
+            reqParams.autor = ref.replace(/\s/g, '%20');
+            this.setState({autor:ref})
+        }
+
+        Requests.get(apiArea, reqParams).then(ret => {
+            let data = [];
+            if (ret.links[3]) {
                 const lastPageLink = ret.links[3].href;
                 const lastPageNumber = getUrlVar(lastPageLink, 'pagina');
                 this.setState({ numPages: lastPageNumber });
                 this.setState({ count: lastPageNumber*this.state.rowsPerPage });
-                //Get the data --
-                Object.values(ret.dados).map((row) => (
-                    data.push([row.id, row.ano, row.ementa])
-                ));
-                this.setState({ data: data });
-            });
+            }
+            else {
+                this.setState({ numPages: 1 });
+            }
+            //Get the data --
+            Object.values(ret.dados).map((row) => (
+                data.push([row.id, row.ano, row.ementa])
+            ));
+            this.setState({ data: data });
+        });
     }
 
     componentDidMount() {
         this.getDataRequest();
+
+        this.props.history.listen((location, action) => {
+            // location is an object like window.location
+            console.log(location.pathname);
+            if (location.pathname === '/propostas') {
+                this.setState({lastLocation:location});
+                this.setState({data:[]});
+                this.setState({autor:''});
+                this.getDataRequest();
+            }
+        });
     };
 
     handleChangePage = (event, page) => {
@@ -72,8 +104,8 @@ class Propostas extends React.Component {
 
 
     render() {
-        const { classes } = this.props;
-        let { data, rowsPerPage, page, count } = this.state;
+        // const { classes } = this.props;
+        let { data, rowsPerPage, page, count, autor } = this.state;
         // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
@@ -81,7 +113,12 @@ class Propostas extends React.Component {
                 <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
                     Propostas de Lei
                 </Typography>
-                <Paper className={classes.root}>
+                {autor !== '' &&
+                    <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
+                        Autor: {autor}
+                    </Typography>
+                }
+                <Paper> {/*className={classes.root}*/}
                     <TableList
                         head={['Id', 'Ano', 'Ementa']}
                         data={data}
@@ -106,7 +143,9 @@ class Propostas extends React.Component {
 }
 
 Propostas.propTypes = {
-    classes: PropTypes.object.isRequired,
+    // classes: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Propostas);
+export default withRouter(Propostas);

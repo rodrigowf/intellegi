@@ -73,7 +73,7 @@ class Deputados extends React.Component {
                     <Chip
                         key={index}
                         component={Link}
-                        to={'/deputados/'+deputado.id}
+                        to={'/propostas/autor/'+deputado.nome}
                         aria-label={deputado.nome}
                         avatar={<Avatar alt={deputado.nome} src={deputado.urlFoto} />}
                         label={deputado.nome}
