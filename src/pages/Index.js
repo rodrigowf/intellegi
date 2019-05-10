@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import {withStyles} from "@material-ui/core";
 import classNames from 'classnames';
-import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 import red from '@material-ui/core/colors/red';
@@ -13,7 +13,6 @@ import purple from '@material-ui/core/colors/purple'
 import indigo from '@material-ui/core/colors/indigo';
 
 import ListIcon from "@material-ui/icons/List";
-
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import GroupWorkIcon from "@material-ui/icons/GroupWork"
 import FlagIcon from "@material-ui/icons/Flag"
@@ -39,7 +38,27 @@ const styles = theme => ({
 
         ListIcon: {
             fontSize: 30,
-        }
+        },
+    },
+    red: {
+        color: red[900],
+        '&:hover': {backgroundColor: red[100]},
+    },
+    blue: {
+        color: blue[900],
+        '&:hover': {backgroundColor: blue[100]},
+    },
+    yellow: {
+        color: yellow[900],
+        '&:hover': {backgroundColor: yellow[200]},
+    },
+    purple: {
+        color: purple[900],
+        '&:hover': {backgroundColor: purple[100]},
+    },
+    indigo: {
+        color: indigo[900],
+        '&:hover': {backgroundColor: indigo[100]},
     },
 });
 
@@ -47,31 +66,31 @@ const menuItems = [
     {
         icon: ListIcon ,
         title: "Últimos",
-        color: red[200],
+        color: 'red',
         route: '/propostas',
     },
     {
         icon: GroupWorkIcon ,
         title: "Comissões",
-        color: blue[200],
+        color: 'blue',
         route: '/comissoes',
     },
     {
         icon: AccountBoxIcon ,
         title: "Deputados",
-        color: yellow[200],
-        route: '/partidos',
+        color: 'yellow',
+        route: '/deputados',
     },
     {
         icon: FlagIcon,
         title: "Partidos",
-        color: purple[200],
-        route: '',
+        color: 'purple',
+        route: '/partidos',
     },
     {
         icon: DonutIcon,
         title: "Blocos",
-        color: indigo[200],
+        color: 'indigo',
         route: '',
     },
 
@@ -96,14 +115,14 @@ class Index extends React.Component {
                 </Typography>
                 <br/>
                 {menuItems.map((item, index) => (
-                    <Fab component={Link} to={item.route} key={index} style={{backgroundColor: item.color}} aria-label={item.title} className={classNames(classes.fab, classes.margin)}>
+                    <IconButton component={Link} to={item.route} key={index} aria-label={item.title} className={classNames(classes.fab, classes.margin, classes[item.color])}>
                         <div className={classes.fabContent}>
                             {React.createElement( item.icon, {fontSize: "large"})}
                             <Typography color="inherit" component="h1" variant="h6">
                                 {item.title}
                             </Typography>
                         </div>
-                    </Fab>
+                    </IconButton>
                 ))}
             </React.Fragment>
         );
