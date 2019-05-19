@@ -1,5 +1,5 @@
 
-function getUrlVar(str, param) {
+export default function getUrlVar(str, param) {
     let value = 0;
     const urlParts = str.split("?");
     const params = urlParts[1].split("&");
@@ -12,4 +12,16 @@ function getUrlVar(str, param) {
     return value;
 }
 
-export default getUrlVar
+export function textTruncate(str, length, ending) {
+    if (length == null) {
+        length = 100;
+    }
+    if (ending == null) {
+        ending = ' ...';
+    }
+    if (str.length > length) {
+        return str.substring(0, length - ending.length) + ending;
+    } else {
+        return str;
+    }
+}
