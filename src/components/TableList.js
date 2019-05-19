@@ -17,6 +17,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
 
 //TODO Pegar o tamanho que se deve truncar o texto de acordo com o tamnho disponível na janela!!!
+//TODO fazer isso talvez em componente separado para facilitar as mudanças de estado de cada um (quando não precisa ter expansão, etc...)
 
 const styles = theme => ({
     root: {
