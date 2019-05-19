@@ -20,6 +20,7 @@ const Propostas = loadable(() => import('./pages/Propostas'));
 const Comissoes = loadable(() => import('./pages/Comissoes'));
 const Deputados = loadable(() => import('./pages/Deputados'));
 const Partidos = loadable(() => import('./pages/Partidos'));
+const Proposicao = loadable(() => import('./pages/Proposicao'));
 
 const routes = [
     {
@@ -28,6 +29,10 @@ const routes = [
         component: Index,
         icon: <DashboardIcon />,
         exact: true,
+    },
+    {
+        path: "/proposta/",
+        component: Proposicao,
     },
     {
         path: "/propostas",
@@ -40,18 +45,21 @@ const routes = [
         label: 'Lista de Comissões',
         component: Comissoes,
         icon: <GroupWorkIcon />,
+        searchable: true,
     },
     {
         path: "/deputados",
         label: 'Lista de Deputados',
         component: Deputados,
         icon: <AccountBoxIcon />,
+        searchable: true,
     },
     {
         path: "/partidos",
         label: 'Lista de Partidos',
         component: Partidos,
         icon: <FlagIcon />,
+        searchable: true,
     },
     {
         path: "/ex",

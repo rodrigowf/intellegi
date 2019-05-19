@@ -39,10 +39,10 @@ const styles =  (theme) => ({
 class Deputados extends React.Component {
     state = {
         deputados: [],
+        deputadosFiltrados: [],
     };
 
     componentDidMount(){
-        console.log('aquiiii!!');
         Requests.get(apiArea, {
             pagina: 1,
             itens: 600,
@@ -56,21 +56,48 @@ class Deputados extends React.Component {
                         .split(' ').map(string =>
                             string[0].toUpperCase()+string.slice(1)).join(' ')
                 });
-                this.setState({ deputados: Object.values(data) });
+                this.setState({
+                    deputados: Object.values(data),
+                    deputadosFiltrados: Object.values(data),
+                });
             }
         });
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        // Testa se a propriedade que mudou foi a "searchFilter"
+        if(prevProps.searchFilter !== this.props.searchFilter) {
+
+            // Testa se a string de busca aumentou ou diminuiu
+            if(this.props.searchFilter.includes(prevProps.searchFilter)) {
+                this.setState({
+                    deputadosFiltrados: this.state.deputadosFiltrados.filter(
+                        deputado => deputado.nome.includes(this.props.searchFilter)
+                        //TODO resolver acentos que não estão funcionando!! (erro de charset)
+                    )
+                });
+            }
+            else { // Caso tenha sido apagado algo (na string de busca)...
+                this.setState({
+                    deputadosFiltrados: this.state.deputados.filter(
+                        deputado => deputado.nome.includes(this.props.searchFilter)
+                    )
+                });
+            }
+        }
+    }
+
     render() {
         const { classes } = this.props;
-        const { deputados } = this.state;
+        const { deputadosFiltrados } = this.state;
         
         return (
             <React.Fragment>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Deputados
                 </Typography>
-                {deputados.map((deputado, index) => (
+                {deputadosFiltrados.map((deputado, index) => (
                     <Chip
                         key={index}
                         component={Link}
@@ -90,6 +117,7 @@ class Deputados extends React.Component {
 
 Deputados.propTypes = {
     classes: PropTypes.object.isRequired,
+    searchFilter: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Deputados);

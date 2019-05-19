@@ -31,6 +31,7 @@ class App extends React.Component {
   state = {
     redirectToReferrer: false,
     open: false,
+    searchFilter: '',
   };
 
   handleDrawerOpen = () => {
@@ -41,9 +42,13 @@ class App extends React.Component {
     this.setState({ open: false });
   };
 
+  handleSearch = (event) => {
+    this.setState({searchFilter: event.target.value});
+  };
+
   render() {
     const { classes, theme } = this.props;
-    // let { redirectToReferrer } = this.state;
+    let { searchFilter } = this.state;
 
     return (
         <div className={classes.root}>
@@ -82,7 +87,7 @@ class App extends React.Component {
                   </div>
                   <InputBase
                       placeholder="Search…"
-                      // onSubmit={this.hadleSearch}
+                      onChange={this.handleSearch}
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
@@ -117,13 +122,13 @@ class App extends React.Component {
               </div>
               <Divider />
               <List>
-                {routes.map( (route, index) => (
+                {routes.map( (route, index) => (route.label ?
                     <ListItem button key={index} component={Link} to={route.path}>
                       <ListItemIcon>
                         {route.icon}
                       </ListItemIcon>
                       <ListItemText primary={route.label} />
-                    </ListItem>
+                    </ListItem> : ''
                 ))}
               </List>
               <Divider />
@@ -146,12 +151,20 @@ class App extends React.Component {
                   // that requires you to render multiple things
                   // in multiple places at the same URL is nothing
                   // more than multiple <Route>s.
-                  <Route
-                      key={index}
-                      path={route.path}
-                      component={route.component}
-                      exact={route.exact}
-                  />
+                  route.searchable
+                    ? <Route
+                          key={index}
+                          path={route.path}
+                          exact={route.exact}
+                          render={(props) => React.createElement(route.component, {searchFilter: searchFilter, ...props})}
+                      />
+                    : <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.component}
+                      />
+
               ))}
             </main>
           </Router>

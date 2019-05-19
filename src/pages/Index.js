@@ -8,9 +8,10 @@ import Typography from '@material-ui/core/Typography';
 
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
-import yellow from '@material-ui/core/colors/yellow';
+import orange from '@material-ui/core/colors/deepOrange';
 import purple from '@material-ui/core/colors/purple'
 import indigo from '@material-ui/core/colors/indigo';
+import grey from '@material-ui/core/colors/grey';
 
 import ListIcon from "@material-ui/icons/List";
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
@@ -26,40 +27,54 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
     },
     fab: {
-        width: 125,
-        height: 125,
+        width: 150,
+        height: 150,
         textTransform: "none",
+        backgroundColor: grey[100],
     },
     fabContent: {
         display:'block',
         width: "100%",
         alignItems: 'center',
         textAlign: 'center',
-
-        ListIcon: {
-            fontSize: 30,
-        },
     },
+    fabText: {
+        fontSize: 23,
+    },
+    fabIcon: {
+        fontSize: 60,
+        margin: -6,
+    },
+
     red: {
         color: red[900],
         '&:hover': {backgroundColor: red[100]},
     },
+    icon_red: { color: red[300] },
+
     blue: {
         color: blue[900],
         '&:hover': {backgroundColor: blue[100]},
     },
-    yellow: {
-        color: yellow[900],
-        '&:hover': {backgroundColor: yellow[200]},
+    icon_blue: { color: blue[300] },
+
+    orange: {
+        color: orange[900],
+        '&:hover': {backgroundColor: orange[100]},
     },
+    icon_orange: {color: orange[300] },
+
     purple: {
         color: purple[900],
         '&:hover': {backgroundColor: purple[100]},
     },
+    icon_purple: {color: purple[300] },
+
     indigo: {
         color: indigo[900],
         '&:hover': {backgroundColor: indigo[100]},
     },
+    icon_indigo: {color: indigo[300] },
 });
 
 const menuItems = [
@@ -78,7 +93,7 @@ const menuItems = [
     {
         icon: AccountBoxIcon ,
         title: "Deputados",
-        color: 'yellow',
+        color: 'orange',
         route: '/deputados',
     },
     {
@@ -115,10 +130,19 @@ class Index extends React.Component {
                 </Typography>
                 <br/>
                 {menuItems.map((item, index) => (
-                    <IconButton component={Link} to={item.route} key={index} aria-label={item.title} className={classNames(classes.fab, classes.margin, classes[item.color])}>
+                    <IconButton
+                        component={Link}
+                        to={item.route}
+                        key={index}
+                        aria-label={item.title}
+                        className={classNames(
+                            classes.fab,
+                            classes.margin,
+                            classes[item.color])}
+                    >
                         <div className={classes.fabContent}>
-                            {React.createElement( item.icon, {fontSize: "large"})}
-                            <Typography color="inherit" component="h1" variant="h6">
+                            {React.createElement( item.icon, {className: classNames(classes.fabIcon, classes['icon_'+item.color])})}
+                            <Typography className={classes.fabText} color="inherit" component="h1" variant="h6">
                                 {item.title}
                             </Typography>
                         </div>

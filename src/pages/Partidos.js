@@ -38,6 +38,7 @@ const styles =  (theme) => ({
 class Partidos extends React.Component {
     state = {
         partidos: [],
+        partidosFiltrados: [],
     };
 
     componentDidMount(){
@@ -54,21 +55,46 @@ class Partidos extends React.Component {
                         .split(' ').map(string =>
                             string[0].toUpperCase()+string.slice(1)).join(' ')
                 });
-                this.setState({ partidos: Object.values(data) });
+                let partidos = Object.values(data);
+                this.setState({ partidos: partidos });
+                this.setState({ partidosFiltrados: partidos });
             }
         });
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        // Testa se a propriedade que mudou foi a "searchFilter"
+        if(prevProps.searchFilter !== this.props.searchFilter) {
+
+            // Testa se a string de busca aumentou ou diminuiu
+            if(this.props.searchFilter.includes(prevProps.searchFilter)) {
+                this.setState({
+                    partidosFiltrados: this.state.partidosFiltrados.filter(
+                        partido => partido.nome.includes(this.props.searchFilter)
+                    )
+                });
+            }
+            else { // Caso tenha sido apagado algo (na string de busca)...
+                this.setState({
+                    partidosFiltrados: this.state.partidos.filter(
+                        partido => partido.nome.includes(this.props.searchFilter)
+                    )
+                });
+            }
+        }
+    }
+
     render() {
         const { classes } = this.props;
-        let { partidos } = this.state;
+        let { partidosFiltrados } = this.state;
         
         return (
             <React.Fragment>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Partidos
                 </Typography>
-                {partidos.map((partido, index) => (
+                {partidosFiltrados.map((partido, index) => (
                     <Chip
                         key={index}
                         component={Link}
@@ -87,6 +113,8 @@ class Partidos extends React.Component {
 
 Partidos.propTypes = {
     classes: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
+    searchFilter: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Partidos);

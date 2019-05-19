@@ -43,15 +43,44 @@ const styles = function (theme) {
 };
 
 class Comissoes extends React.Component {
+    state = {
+        comissoesFiltrado: comissoes,
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        // Testa se a propriedade que mudou foi a "searchFilter"
+        if(prevProps.searchFilter !== this.props.searchFilter) {
+
+            // Testa se a string de busca aumentou ou diminuiu
+            if(this.props.searchFilter.includes(prevProps.searchFilter)) {
+                this.setState({
+                    comissoesFiltrado: this.state.comissoesFiltrado.filter(
+                        comissao => comissao.nome.includes(this.props.searchFilter)
+                        //TODO resolver acentos que não estão funcionando!! (erro de charset)
+                    )
+                });
+            }
+            else { // Caso tenha sido apagado algo (na string de busca)...
+                this.setState({
+                    comissoesFiltrado: comissoes.filter(
+                        comissao => comissao.nome.includes(this.props.searchFilter)
+                    )
+                });
+            }
+        }
+    }
+
     render() {
         const { classes } = this.props;
+        const { comissoesFiltrado } = this.state;
 
         return (
             <React.Fragment>
                 <Typography component="h2" variant="h3" align="left" color="textSecondary" gutterBottom>
                     Comissões
                 </Typography>
-                {comissoes.map((comissao, index) => (
+                {comissoesFiltrado.map((comissao, index) => (
                     <Chip
                         key={index}
                         component={Link}
@@ -72,6 +101,7 @@ class Comissoes extends React.Component {
 
 Comissoes.propTypes = {
     classes: PropTypes.object.isRequired,
+    searchFilter: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Comissoes);

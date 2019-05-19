@@ -12,6 +12,9 @@ import getUrlVar from '../helpers/helpers';
 
 const apiArea = 'proposicoes';
 
+//TODO Resolver problema que está dando quando vc vem diretamente
+// de uma lista específica de alguem para a lista geral e o sistema não percebe q vc já estã na geral
+
 const styles = theme => ({
     grow: {
         flexGrow: 1,
@@ -68,7 +71,6 @@ class Propostas extends React.Component {
         }
 
         Requests.get(apiArea, reqParams).then(ret => {
-            let data = [];
             if (ret.links[3]) {
                 const lastPageLink = ret.links[3].href;
                 const lastPageNumber = getUrlVar(lastPageLink, 'pagina');
@@ -79,10 +81,7 @@ class Propostas extends React.Component {
                 this.setState({ numPages: 1 });
             }
             //Get the data --
-            Object.values(ret.dados).map((row) => (
-                data.push([row.id, row.ano, row.ementa])
-            ));
-            this.setState({ data: data });
+            this.setState({ data: Object.values(ret.dados) });
         });
     }
 
@@ -130,7 +129,6 @@ class Propostas extends React.Component {
                 }
                 <Paper> {/*className={classes.root}*/}
                     <TableList
-                        head={['Id', 'Ano', 'Ementa']}
                         data={data}
                         pagination={(
                             <TablePagination

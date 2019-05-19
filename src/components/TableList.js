@@ -6,6 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableFooter from "@material-ui/core/TableFooter";
 import {withStyles} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     root: {
@@ -21,24 +22,35 @@ const styles = theme => ({
 });
 
 function TableList(props) {
-    const { head, data, pagination } = props;
+    const { data, pagination } = props;
     return (
         <Table container="true" spacing={16}>
             <TableHead>
                 <TableRow>
-                    {head.map( (name, index) => (
-                        <TableCell key={'h-c'+index} align="center">{name}</TableCell>
-                    ))}
+                    <TableCell key="h_num" align="center">Numero</TableCell>
+                    <TableCell key="h_tipo" align="center">Tipo</TableCell>
+                    <TableCell key="h_ano" align="center">Ano</TableCell>
+                    <TableCell key="h_ementa" align="center">Ementa</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
-                {data.map( row => (
-                    <TableRow key={row[0]}>
-                        {row.map( (data, indexCol) => (
-                            <TableCell key={'b-r'+row[0]+'c'+indexCol} align="center">
-                                {data}
-                            </TableCell>
-                        ))}
+                {data.map( proposta => (
+                    <TableRow  key={proposta.id}>
+                        <TableCell key="num" align="center">
+                            <Link to={'/proposta/'+proposta.id}>
+                                {proposta.numero}
+                            </Link>
+                        </TableCell>
+                        <TableCell key="tipo" align="center">
+                            {proposta.siglaTipo}
+                        </TableCell>
+                        <TableCell key="ano" align="center">
+                            {proposta.ano}
+                        </TableCell>
+                        <TableCell key="ementa" align="center">
+                            {proposta.ementa}
+                        </TableCell>
+
                     </TableRow>
                 ))}
             </TableBody>
