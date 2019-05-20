@@ -14,10 +14,10 @@ import grey from "@material-ui/core/colors/grey";
 const styles = theme => ({
     ementaText: {
         display: 'inline-block',
-        width: '87%',
+        width: '86%',
         transition: 'height 2s',
         [theme.breakpoints.down('sm')]: {
-            width: '80%',
+            width: '78%',
         },
     },
     ementaTextExpanded: {
@@ -35,8 +35,8 @@ const styles = theme => ({
         width:'100%',
 
         [theme.breakpoints.down('md')]: {
-            paddingLeft: -10,
-            paddingRight: -5,
+            marginLeft: -10,
+            width: '110%',
         },
 
     },
@@ -77,11 +77,11 @@ class Expandable extends React.Component {
         if(drawer) {
             width = !this.props.drawerOpen
                 ? this.state.widthNoDrawer
-                : this.state.widthNoDrawer - 150;
+                : this.state.widthNoDrawer - 160;
         } else {
             this.setState({
                 widthNoDrawer: this.props.drawerOpen
-                    ? width + 150
+                    ? width + 160
                     : width
             });
         }
@@ -91,7 +91,7 @@ class Expandable extends React.Component {
         console.log(width);
         console.log(this.myInput.current.offsetWidth);
 
-        let numChars = (width < 430) ? width/7 : width/6.5;
+        let numChars = (width < 430) ? width/7.3 : width/6.5;
         let needExpansion = (this.props.ementa.length > numChars);
 
         this.setState({ width: width, needExpansion: needExpansion, numChars: numChars });
