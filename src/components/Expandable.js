@@ -91,7 +91,7 @@ class Expandable extends React.Component {
         console.log(width);
         console.log(this.myInput.current.offsetWidth);
 
-        let numChars = (width < 430) ? width/7.3 : width/6.5;
+        let numChars = (width < 430) ? width/7.3 : width/6.6;
         let needExpansion = (this.props.ementa.length > numChars);
 
         this.setState({ width: width, needExpansion: needExpansion, numChars: numChars });
