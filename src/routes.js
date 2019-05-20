@@ -39,6 +39,7 @@ const routes = [
         label: 'Lista de Propostas',
         component: Propostas,
         icon: <ListIcon />,
+        searchable: true,
     },
     {
         path: "/comissoes",

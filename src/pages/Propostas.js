@@ -113,7 +113,7 @@ class Propostas extends React.Component {
 
 
     render() {
-        // const { classes } = this.props;
+        const { drawerOpen } = this.props;
         let { data, rowsPerPage, page, count, autor, subarea } = this.state;
         // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -130,6 +130,7 @@ class Propostas extends React.Component {
                 <Paper> {/*className={classes.root}*/}
                     <TableList
                         data={data}
+                        drawerOpen={drawerOpen}
                         pagination={(
                             <TablePagination
                                 rowsPerPageOptions={[15, 25, 35]}
@@ -151,7 +152,8 @@ class Propostas extends React.Component {
 }
 
 Propostas.propTypes = {
-    // classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
+    drawerOpen: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
 };

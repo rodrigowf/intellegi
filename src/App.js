@@ -48,7 +48,7 @@ class App extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    let { searchFilter } = this.state;
+    let { searchFilter, open } = this.state;
 
     return (
         <div className={classes.root}>
@@ -156,7 +156,7 @@ class App extends React.Component {
                           key={index}
                           path={route.path}
                           exact={route.exact}
-                          render={(props) => React.createElement(route.component, {searchFilter: searchFilter, ...props})}
+                          render={(props) => React.createElement(route.component, {searchFilter: searchFilter, drawerOpen:open, ...props})}
                       />
                     : <Route
                         key={index}
