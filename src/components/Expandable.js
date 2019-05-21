@@ -41,12 +41,6 @@ const styles = theme => ({
     div: {
         width:'100%',
 
-        '&:hover': {
-            '& expansionButton': {
-                backgroundColor: 'red',
-            }
-        },
-
         [theme.breakpoints.down('md')]: {
             marginLeft: -10,
             width: '110%',
@@ -70,12 +64,14 @@ class Expandable extends React.Component {
     }
 
     componentDidMount () {
-        this.updateDimensions(this.props.drawerOpen);
         this.setState({
             width: this.myInput.current.offsetWidth,
             widthNoDrawer: this.myInput.current.offsetWidth,
         });
-        window.addEventListener("resize", () => this.updateDimensions(false));
+        this.updateDimensions(false);
+        window.addEventListener("resize",
+            () => this.updateDimensions(false)
+        );
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -84,27 +80,28 @@ class Expandable extends React.Component {
         }
     }
 
-    updateDimensions = (drawer = false) => {
-        let width = this.myInput.current.offsetWidth;
+    updateDimensions = (changedDrawer = false) => {
+        let width = 100;
 
-        if(drawer) {
+        if(changedDrawer) {
             width = !this.props.drawerOpen
                 ? this.state.widthNoDrawer
-                : this.state.widthNoDrawer - 160;
+                : this.state.widthNoDrawer - 180;
         } else {
+            width = this.myInput.current.offsetWidth;
             this.setState({
                 widthNoDrawer: this.props.drawerOpen
-                    ? width + 160
+                    ? width + 170
                     : width
             });
         }
 
-        console.log('drawer =  '+drawer);
+        console.log('drawer =  '+changedDrawer);
         console.log('open = '+this.props.drawerOpen);
         console.log(width);
         console.log(this.myInput.current.offsetWidth);
 
-        let numChars = (width < 430) ? width/7.3 : width/6.6;
+        let numChars = width < 250 ? width/8.3 : ((width < 500 && this.props.drawerOpen) ? width/7.3 : width/6.6);
         let needExpansion = (this.props.ementa.length > numChars);
 
         this.setState({ width: width, needExpansion: needExpansion, numChars: numChars });
