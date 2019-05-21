@@ -16,12 +16,16 @@ const styles = theme => ({
         display: 'inline-block',
         width: '86%',
         transition: 'height 2s',
+        '&:hover': {
+            color: grey[800],
+        },
         [theme.breakpoints.down('sm')]: {
             width: '78%',
         },
     },
     ementaTextExpanded: {
         marginTop: theme.spacing.unit,
+        color: grey[700],
     },
     expansionButton: {
         padding: '0px 0px',
@@ -31,8 +35,17 @@ const styles = theme => ({
         minHeight: 37,
         color: grey[400],
     },
+    iconLess:{
+        color: grey[500],
+    },
     div: {
         width:'100%',
+
+        '&:hover': {
+            '& expansionButton': {
+                backgroundColor: 'red',
+            }
+        },
 
         [theme.breakpoints.down('md')]: {
             marginLeft: -10,
@@ -114,7 +127,7 @@ class Expandable extends React.Component {
         const { expanded, needExpansion, numChars } = this.state;
 
         return (
-            <div ref={this.myInput} className={classes.div}>
+            <div ref={this.myInput} className={classes.div} onClick={this.toggleExpand}>
                 <Typography
                     className={ (!expanded || !needExpansion)
                         ? classes.ementaText
@@ -128,7 +141,7 @@ class Expandable extends React.Component {
                     }
                 </Typography>
                     <IconButton className={classes.expansionButton} onClick={this.toggleExpand}>
-                        {needExpansion ? (expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />) : ' '}
+                        {needExpansion ? (expanded ? <ExpandLessIcon className={classes.iconLess} /> : <ExpandMoreIcon />) : ' '}
                     </IconButton>
             </div>
         );

@@ -156,7 +156,11 @@ class App extends React.Component {
                           key={index}
                           path={route.path}
                           exact={route.exact}
-                          render={(props) => React.createElement(route.component, {searchFilter: searchFilter, drawerOpen:open, ...props})}
+                          render={ (props) =>
+                              React.createElement(route.component, {
+                                searchFilter: searchFilter,
+                                drawerOpen:open, ...props})
+                          }
                       />
                     : <Route
                         key={index}

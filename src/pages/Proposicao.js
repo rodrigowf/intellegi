@@ -62,16 +62,17 @@ class Proposicao extends React.Component {
                         {
                             let autores = [];
                             Object.values(ret_autores.dados).forEach((autor) => { // FOR para cada autor
-                                autor.urlFoto = 'https://www.camara.leg.br/internet/deputado/bandep/'+autor.uri.split('/').pop()+'.jpg';
+                                autor.urlFoto =
+                                    autor.uri
+                                        ? 'https://www.camara.leg.br/internet/deputado/bandep/'+autor.uri.split('/').pop()+'.jpg'
+                                        : null;
                                 autores.push(autor);
                             });
                             this.setState({autores:ret_autores.dados});
-                            console.log(this.state.autores);
                         } else {
                             console.log('Erro, dados sobre autores não recebidos!');
                         }
                     });
-                console.log(proposicao);
                 this.setState({proposicao: proposicao})
             } else {
                 console.log('Erro, dados não recebidos!');
@@ -109,8 +110,8 @@ class Proposicao extends React.Component {
                     </Typography>
                 </div>
 
-                {(autores[0] !== undefined) ? autores.map((autor) => (
-                    <Card className={classNames([classes.card, classes.gutterBottom])}>
+                {(autores[0] !== undefined) ? autores.map((autor, index) => (
+                    <Card key={index} className={classNames([classes.card, classes.gutterBottom])}>
                         <CardMedia
                             className={classes.cover}
                             title="Foto do Deputado"
