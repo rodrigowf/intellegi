@@ -158,7 +158,6 @@ class App extends React.Component {
                         exact={route.exact}
                         component={route.component}
                       />
-
               ))}
             </main>
           </Router>
