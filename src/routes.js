@@ -13,7 +13,7 @@ const Checkout = loadable(() => import('./examples/checkout/Checkout'));
 const Index = loadable(() => import('./pages/Index'));
 const Propostas = loadable(() => import('./pages/Propostas'));
 const Comissoes = loadable(() => import('./pages/Comissoes'));
-const Deputados = loadable(() => import('./pages/Deputados'));
+const Deputados = loadable(() => import('./pages/Deputados/Deputados'));
 const Partidos = loadable(() => import('./pages/Partidos'));
 const Proposicao = loadable(() => import('./pages/Proposicao'));
 
