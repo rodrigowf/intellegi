@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 class DivideInCols extends React.Component {
     state = {
         dataSepareted: [],
-        spacing:16,
+        spacing:16, //TODO calcular esses valores na montagem
         xs: 6
     };
 
