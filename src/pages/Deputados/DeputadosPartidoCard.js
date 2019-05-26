@@ -48,14 +48,15 @@ class DeputadosPartidoCard extends React.Component {
     render() {
         let { classes, key, data} = this.props;
 
-        return (
-           <Card
+        if (data.length < 1) return '';
+        else return (
+            <Card
                 key={key}
                 className={classes.cardPartido}
             >
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
+                        <Avatar aria-label="Logotipo partio" className={classes.avatar}>
                             {data[0].siglaPartido[0]}
                         </Avatar>
                     }
