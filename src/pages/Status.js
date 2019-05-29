@@ -49,7 +49,9 @@ const status = [
                 cod: 100,
                 sigla: "",
                 nome: "Apresentação de Proposição",
-                descricao: ""
+                descricao: "" ,
+                tipoTramitacao:"apresentacao",
+                stage: 1
             },
             {
                 cod: 104,
@@ -79,7 +81,9 @@ const status = [
                 cod: 110,
                 sigla: "",
                 nome: "Distribuição ",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"apresentacao",
+                stage: 2
             },
             {
                 cod: 112,
@@ -445,7 +449,9 @@ const status = [
                 cod: 240,
                 sigla: "",
                 nome: "Aprovação",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"comissao",
+                stage: 4
             },
             {
                 cod: 241,
@@ -511,7 +517,9 @@ const status = [
                 cod: 320,
                 sigla: "",
                 nome: "Designação de Relator",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"comissao",
+                stage: 1
             },
             {
                 cod: 321,
@@ -523,7 +531,9 @@ const status = [
                 cod: 322,
                 sigla: "",
                 nome: "Parecer do Relator",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"comissao",
+                stage: 3
             },
             {
                 cod: 323,
@@ -709,7 +719,9 @@ const status = [
                 cod: 501,
                 sigla: "",
                 nome: "Recebimento - Relator",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"comissao",
+                stage: 2
             },
             {
                 cod: 502,
@@ -781,7 +793,9 @@ const status = [
                 cod: 604,
                 sigla: "",
                 nome: "Publicação de Proposição",
-                descricao: ""
+                descricao: "",
+                tipoTramitacao:"apresentacao",
+                stage: 3
             },
             {
                 cod: 605,
