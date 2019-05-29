@@ -40,7 +40,8 @@ import BuildIcon from @material-ui/icons/Build;
 
 
 export const timelineComissao = [320,501,322,240];
-export const timelineApresentacao = [];
+export const timelineApresentacao = [100,110,604];
+export const timelineApensacao = [106,504,110,604,504];
 
 
 
