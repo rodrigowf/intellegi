@@ -90,7 +90,7 @@ const themes = [
 function PageLayoutExamples(props) {
   const { classes } = props;
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {themes.map(theme => (
         <Grid item sm={6} md={4} className={classes.item} key={theme.name}>
           <Card className={classes.card}>

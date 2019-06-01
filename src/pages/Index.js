@@ -21,10 +21,10 @@ import DonutIcon from "@material-ui/icons/DonutLarge"
 
 const styles = theme => ({
     margin: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
     },
     extendedIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
     fab: {
         width: 150,

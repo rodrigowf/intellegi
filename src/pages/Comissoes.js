@@ -10,7 +10,7 @@ import Chip from "@material-ui/core/es/Chip/Chip";
 import Avatar from '@material-ui/core/Avatar';
 import grey from '@material-ui/core/colors/grey';
 
-import comissoes from './comissoesData';
+import comissoes from '../data/comissoes';
 
 const styles = function (theme) {
     const styles = {
@@ -26,10 +26,10 @@ const styles = function (theme) {
             backgroundColor: grey[300],
         },
         margin: {
-            margin: theme.spacing.unit,
+            margin: theme.spacing(1),
         },
         extendedIcon: {
-            marginRight: theme.spacing.unit,
+            marginRight: theme.spacing(1),
         },
         lightTooltip: {
             // backgroundColor: theme.palette.common.white,

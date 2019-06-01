@@ -24,7 +24,7 @@ const styles = theme => ({
         },
     },
     ementaTextExpanded: {
-        marginTop: theme.spacing.unit,
+        marginTop: theme.spacing(1),
         color: grey[700],
     },
     expansionButton: {
@@ -96,10 +96,10 @@ class Expandable extends React.Component {
             });
         }
 
-        console.log('drawer =  '+changedDrawer);
-        console.log('open = '+this.props.drawerOpen);
-        console.log(width);
-        console.log(this.myInput.current.offsetWidth);
+        // console.log('drawer =  '+changedDrawer);
+        // console.log('open = '+this.props.drawerOpen);
+        // console.log(width);
+        // console.log(this.myInput.current.offsetWidth);
 
         let numChars = width < 250 ? width/8.3 : ((width < 500 && this.props.drawerOpen) ? width/7.3 : width/6.6);
         let needExpansion = (this.props.ementa.length > numChars);

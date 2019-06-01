@@ -21,7 +21,7 @@ const styles = theme => ({
     },
     root: {
         width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing(3),
     },
     table: {
         minWidth: 500,
@@ -71,7 +71,7 @@ class Propostas extends React.Component {
         }
 
         Requests.get(apiArea, reqParams).then(ret => {
-            if (ret.links[3]) {
+            if (ret.links !== undefined && ret.links[3] !== undefined) {
                 const lastPageLink = ret.links[3].href;
                 const lastPageNumber = getUrlVar(lastPageLink, 'pagina');
                 this.setState({ numPages: lastPageNumber });
@@ -86,22 +86,23 @@ class Propostas extends React.Component {
     }
 
     componentDidMount() {
-        this.getDataRequest();
+        this.getDataRequest(0 );
 
-        this.props.history.listen((location) => {
-            // location is an object like window.location
-            console.log(location.pathname);
-            if (location.pathname === '/propostas') {
-                this.setState({lastLocation:location});
-                this.setState({data:[]});
-                this.setState({autor:''});
-                this.setState({subarea:''});
-                this.getDataRequest();
-            }
-        });
+        // this.props.history.listen((location) => {
+        //     // location is an object like window.location
+        //     console.log(location.pathname);
+        //     if (location.pathname === '/propostas') {
+        //         this.setState({lastLocation:location});
+        //         this.setState({data:[]});
+        //         this.setState({autor:''});
+        //         this.setState({subarea:''});
+        //         // this.getDataRequest();
+        //     }
+        // });
     };
 
     handleChangePage = (event, page) => {
+        if(page === 0) return;
         this.setState({ page: page });
         this.getDataRequest(page);
     };

@@ -14,23 +14,24 @@ import CardContent from "@material-ui/core/es/CardContent/CardContent";
 
 const styles = (theme) => ({
     cardPartido: {
-        marginBottom: theme.spacing.unit*2,
+        margin: 0,
+        marginBottom: theme.spacing(2),
     },
     cardHeader: {
         backgroundColor: grey[200],
     },
     cardContent: {
-        padding: theme.spacing.unit,
+        padding: theme.spacing(1),
     },
     chip: {
         backgroundColor: grey[200],
-        margin: theme.spacing.unit/2,
+        margin: theme.spacing(1)/2,
     },
     margin: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
     },
     extendedIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
     lightTooltip: {
         // backgroundColor: theme.palette.common.white,
@@ -86,7 +87,6 @@ class DeputadosPartidoCard extends React.Component {
 
 DeputadosPartidoCard.propTypes = {
     classes: PropTypes.object.isRequired,
-    deputados: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(DeputadosPartidoCard);

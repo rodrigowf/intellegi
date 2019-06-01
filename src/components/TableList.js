@@ -16,7 +16,7 @@ import TableFooter from "@material-ui/core/TableFooter";
 const styles = theme => ({
     root: {
         width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing(3),
     },
     table: {
         minWidth: 500,
@@ -39,7 +39,7 @@ function TableList (props) {
     const { data, pagination, classes, drawerOpen } = props;
 
     return (
-        <Table container="true" spacing={16}>
+        <Table container="true" spacing={1}>
             <TableHead>
                 <TableRow>
                     <TableCell key="h_tipo" align="center">Tipo</TableCell>

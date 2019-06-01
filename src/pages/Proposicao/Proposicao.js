@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from "@material-ui/core";
 import classNames from 'classnames';
-import Requests from "../helpers/api";
-import PdfCard from "../components/PdfCard";
+import Requests from "../../helpers/api";
+import PdfCard from "./PdfCard";
 
 import Typography from '@material-ui/core/Typography';
 import Card from "@material-ui/core/es/Card/Card";
 import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
 import CardContent from "@material-ui/core/es/CardContent/CardContent";
-
 
 const apiArea = 'proposicoes';
 
@@ -20,10 +19,10 @@ const styles =  (theme) => ({
             flexWrap: 'wrap',
         },
         margin: {
-            margin: theme.spacing.unit*2,
+            margin: theme.spacing(2),
         },
         gutterBottom: {
-            marginBottom: theme.spacing.unit*2,
+            marginBottom: theme.spacing(2),
         },
         card: {
             display: 'flex',
@@ -87,8 +86,6 @@ class Proposicao extends React.Component {
     render() {
         const { classes } = this.props;
         let { proposicao, autores } = this.state;
-
-        console.log(proposicao.urlInteiroTeor);
 
         return (
             <React.Fragment>

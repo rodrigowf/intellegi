@@ -6,7 +6,7 @@ import { Page } from 'react-pdf';
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/es/Card/Card";
 import Typography from "@material-ui/core/es/Typography/Typography";
-import TablePaginationActions from "./TablePaginationActions";
+import TablePaginationActions from "../../components/TablePaginationActions";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const styles =  (theme) => ({
@@ -25,16 +25,16 @@ const styles =  (theme) => ({
     },
     pageCount: {
         display: 'flex',
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         flexGrow: 1,
     },
     pageCountText: {
-        margin: theme.spacing.unit*5/4,
+        margin: theme.spacing(5)/4,
         marginLeft: 'auto',
     },
     pageActions: {
         display: 'inline-block',
-        margin: theme.spacing.unit/2,
+        margin: theme.spacing(1)/2,
         // width: 230,
         flexShrink: 0,
         position: 'relative',
@@ -49,7 +49,7 @@ class PdfCard extends Component {
     };
 
     handleChangePage = (event, pageNum) => {
-        this.setState({ pageNumber: pageNum+1 });
+        this.setState({ pageNumber: pageNum });
     };
 
     onDocumentLoadSuccess = ({ numPages }) => {
@@ -89,15 +89,16 @@ class PdfCard extends Component {
                             color="textSecondary"
                             className={classes.pageCountText}
                         >
-                            Page {pageNumber} of {numPages}
+                            Página {pageNumber} de {numPages}
                         </Typography>
                     </div>
                     <div className={classes.pageActions}>
                         <TablePaginationActions
                             onChangePage={this.handleChangePage}
-                            count={numPages}
+                            count={numPages ? numPages : 0}
                             rowsPerPage={1}
-                            page={pageNumber-1}
+                            page={pageNumber}
+                            first={1}
                         />
                     </div>
                 </div>
