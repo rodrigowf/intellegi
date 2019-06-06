@@ -12,6 +12,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import grey from '@material-ui/core/colors/grey';
 import CardContent from "@material-ui/core/es/CardContent/CardContent";
 
+import partidosList from '../../data/partidos';
+
 const styles = (theme) => ({
     cardPartido: {
         marginBottom: theme.spacing.unit*2,
@@ -44,9 +46,33 @@ const styles = (theme) => ({
 });
 
 class DeputadosPartidoCard extends React.Component {
+    state = {
+        partido: {},
+    };
+
+    componentDidMount() {
+        this.getPartido();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.data !== this.props.data) {
+            this.getPartido();
+        }
+    }
+
+    getPartido = () => {
+        if (this.props.data.length > 0 && this.props.data[0] !== undefined) {
+            this.setState({ partido:
+                partidosList.filter((partido) => (
+                    partido.sigla === this.props.data[0].siglaPartido
+                ))[0]
+            })
+        }
+    };
 
     render() {
-        let { classes, key, data} = this.props;
+        let { classes, key, data } = this.props;
+        let { partido } = this.state;
 
         if (data.length < 1) return '';
         else return (
@@ -54,16 +80,21 @@ class DeputadosPartidoCard extends React.Component {
                 key={key}
                 className={classes.cardPartido}
             >
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="Logotipo partio" className={classes.avatar}>
-                            {data[0].siglaPartido[0]}
-                        </Avatar>
-                    }
-                    title={data[0].siglaPartido}
-                    subheader={data[0].siglaPartido}
-                    className={classes.cardHeader}
-                />
+                {partido !== undefined &&
+                    <CardHeader
+                        avatar={
+                            <Avatar
+                                alt={partido.nome}
+                                aria-label="Logotipo partio"
+                                className={classes.avatar}
+                                src={'http://www.camara.leg.br/internet/Deputado/img/partidos/'+partido.sigla+'.gif'}
+                            />
+                        }
+                        title={partido.nome}
+                        subheader={partido.sigla}
+                        className={classes.cardHeader}
+                    />
+                }
                 <CardContent className={classes.cardContent}>
                     {data.map( (deputado, index) => (
                         <Chip
@@ -86,7 +117,7 @@ class DeputadosPartidoCard extends React.Component {
 
 DeputadosPartidoCard.propTypes = {
     classes: PropTypes.object.isRequired,
-    deputados: PropTypes.string.isRequired,
+    data: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(DeputadosPartidoCard);

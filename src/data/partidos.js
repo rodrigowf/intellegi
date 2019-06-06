@@ -1,4 +1,5 @@
-export const partidosList = [
+//TODO colocar "cor" para cada partido e colocar ela onde esse array é chamado
+const partidosList = [
     {
         id: 36898,
         sigla: "AVANTE",
@@ -228,3 +229,5 @@ export const partidosList = [
         uri: "https://dadosabertos.camara.leg.br/api/v2/partidos/37904"
     },
 ];
+
+export default partidosList;

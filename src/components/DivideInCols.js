@@ -43,8 +43,8 @@ class DivideInCols extends React.Component {
             <Grid container spacing={spacing}>
                 {dataSepareted.map((col, indCol) => (
                     <Grid item key={indCol} xs={xs}>
-                        {col.map( function (item) {
-                            return React.createElement( children, { data: item, key: indCol });
+                        {col.map( function (item, indItem) {
+                            return React.createElement( children, { data: item, key: indItem });
                         })}
                     </Grid>
                 ))}
@@ -54,8 +54,8 @@ class DivideInCols extends React.Component {
 }
 
 DivideInCols.propTypes = {
-    data: PropTypes.object.isRequired,
-    children: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
+    children: PropTypes.elementType.isRequired,
     numCols: PropTypes.number.isRequired,
 };
 
