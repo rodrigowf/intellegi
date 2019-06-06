@@ -11,8 +11,8 @@ function AddressForm() {
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={4} sm={2}>
+      <Grid container spacing={24}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="firstName"
@@ -22,7 +22,7 @@ function AddressForm() {
             autoComplete="fname"
           />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="lastName"
@@ -32,7 +32,7 @@ function AddressForm() {
             autoComplete="lname"
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <TextField
             required
             id="address1"
@@ -42,7 +42,7 @@ function AddressForm() {
             autoComplete="billing address-line1"
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <TextField
             id="address2"
             name="address2"
@@ -51,7 +51,7 @@ function AddressForm() {
             autoComplete="billing address-line2"
           />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="city"
@@ -61,10 +61,10 @@ function AddressForm() {
             autoComplete="billing address-level2"
           />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={12} sm={6}>
           <TextField id="state" name="state" label="State/Province/Region" fullWidth />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="zip"
@@ -74,7 +74,7 @@ function AddressForm() {
             autoComplete="billing postal-code"
           />
         </Grid>
-        <Grid item xs={4} sm={2}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="country"
@@ -84,7 +84,7 @@ function AddressForm() {
             autoComplete="billing country"
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Use this address for payment details"

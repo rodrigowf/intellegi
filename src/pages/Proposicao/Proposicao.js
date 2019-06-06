@@ -19,10 +19,10 @@ const styles =  (theme) => ({
             flexWrap: 'wrap',
         },
         margin: {
-            margin: theme.spacing(2),
+            margin: theme.spacing.unit*2,
         },
         gutterBottom: {
-            marginBottom: theme.spacing(2),
+            marginBottom: theme.spacing.unit*2,
         },
         card: {
             display: 'flex',
@@ -87,6 +87,8 @@ class Proposicao extends React.Component {
         const { classes } = this.props;
         let { proposicao, autores } = this.state;
 
+        console.log(proposicao.urlInteiroTeor);
+
         return (
             <React.Fragment>
                 <div className={classes.gutterBottom}>
@@ -109,6 +111,7 @@ class Proposicao extends React.Component {
 
                 {(autores[0] !== undefined) ? autores.map((autor, index) => (
                     <Card key={index} className={classNames([classes.card, classes.gutterBottom])}>
+                        {console.log(autor)}
                         <CardMedia
                             className={classes.cover}
                             title="Foto do Deputado"

@@ -25,16 +25,16 @@ const styles =  (theme) => ({
     },
     pageCount: {
         display: 'flex',
-        margin: theme.spacing(1),
+        margin: theme.spacing.unit,
         flexGrow: 1,
     },
     pageCountText: {
-        margin: theme.spacing(5)/4,
+        margin: theme.spacing.unit*5/4,
         marginLeft: 'auto',
     },
     pageActions: {
         display: 'inline-block',
-        margin: theme.spacing(1)/2,
+        margin: theme.spacing.unit/2,
         // width: 230,
         flexShrink: 0,
         position: 'relative',

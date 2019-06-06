@@ -17,7 +17,7 @@ const styles = (theme) => ({
         flexWrap: 'wrap',
     },
     margin: {
-        margin: theme.spacing(1),
+        margin: theme.spacing.unit,
     },
 });
 
@@ -66,7 +66,7 @@ class Deputados extends React.Component {
                 this.setState({
                     deputadosFiltrados: this.state.deputadosFiltrados
                         .map((deputados) => deputados.filter(
-                            deputado => deputado.nome.includes(this.props.searchFilter)
+                            deputado => deputado.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                         ))
                 });
             }
@@ -74,7 +74,7 @@ class Deputados extends React.Component {
                 this.setState({
                     deputadosFiltrados: this.state.deputados
                         .map((deputados) => deputados.filter(
-                            deputado => deputado.nome.includes(this.props.searchFilter)
+                            deputado => deputado.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                         ))
                 });
             }

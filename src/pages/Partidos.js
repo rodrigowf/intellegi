@@ -22,10 +22,10 @@ const styles =  (theme) => ({
             backgroundColor: grey[200],
         },
         margin: {
-            margin: theme.spacing(1),
+            margin: theme.spacing.unit,
         },
         extendedIcon: {
-            marginRight: theme.spacing(1),
+            marginRight: theme.spacing.unit,
         },
         lightTooltip: {
             // backgroundColor: theme.palette.common.white,
@@ -71,14 +71,14 @@ class Partidos extends React.Component {
             if(this.props.searchFilter.includes(prevProps.searchFilter)) {
                 this.setState({
                     partidosFiltrados: this.state.partidosFiltrados.filter(
-                        partido => partido.nome.includes(this.props.searchFilter)
+                        partido => partido.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                     )
                 });
             }
             else { // Caso tenha sido apagado algo (na string de busca)...
                 this.setState({
                     partidosFiltrados: this.state.partidos.filter(
-                        partido => partido.nome.includes(this.props.searchFilter)
+                        partido => partido.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                     )
                 });
             }

@@ -5,40 +5,33 @@ import Grid from '@material-ui/core/Grid';
 class DivideInCols extends React.Component {
     state = {
         dataSepareted: [],
-        spacing: 3, //TODO calcular esses valores na montagem
-        xs: 6,
+        spacing:16, //TODO calcular esses valores na montagem
+        xs: 6
     };
 
     //TODO preparar JSON dos partidos para pegar os dados que estão separados aqui (para exibir no Card)
 
-    componentDidMount(){
+    separateData = () => {
         let dataSep = [];
-        if(this.props.data !== undefined) {
-            let i = 0;
-            while(i < this.props.numCols) {
-                dataSep[i] = [];
-                i++;
-            }
-            this.props.data.forEach((item, index) => {
-                dataSep[index % this.props.numCols].push(item)
-            });
+        let i = 0;
+        while(i < this.props.numCols) {
+            dataSep[i] = [];
+            i++;
         }
+        this.props.data.forEach((item, index) => {
+            dataSep[index % this.props.numCols].push(item)
+        });
         this.setState({ dataSepareted: dataSep });
+    };
+
+    componentDidMount(){
+        this.separateData();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        // Testa se a propriedade que mudou foi a "searchFilter"
-        if(prevProps.data !== this.props.data && this.props.data !== undefined) {
-            let dataSep = [];
-            let i = 0;
-            while(i < this.props.numCols) {
-                dataSep[i] = [];
-                i++;
-            }
-            this.props.data.forEach((item, index) => {
-                dataSep[index % this.props.numCols].push(item)
-            });
-            this.setState({ dataSepareted: dataSep });
+        // Testa se a propriedade que mudou foi a "data"
+        if(prevProps.data !== this.props.data) {
+            this.separateData();
         }
     }
 
@@ -50,8 +43,8 @@ class DivideInCols extends React.Component {
             <Grid container spacing={spacing}>
                 {dataSepareted.map((col, indCol) => (
                     <Grid item key={indCol} xs={xs}>
-                        {col.map( function (item, indexEl) {
-                            return React.createElement( children, { data: item, key: indexEl });
+                        {col.map( function (item) {
+                            return React.createElement( children, { data: item, key: indCol });
                         })}
                     </Grid>
                 ))}
@@ -61,6 +54,7 @@ class DivideInCols extends React.Component {
 }
 
 DivideInCols.propTypes = {
+    data: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired,
     numCols: PropTypes.number.isRequired,
 };

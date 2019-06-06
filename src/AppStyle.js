@@ -1,9 +1,8 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     root: {
         display: 'flex',
     },
@@ -22,11 +21,18 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
+    appToolbarClosed: {
+        marginRight: 24, //TODO tirar essa gambiarra daqui (gutters, disableGutters)
+    },
     menuButton: {
+        marginLeft: 12,
         marginRight: 36,
     },
     hide: {
         display: 'none',
+    },
+    title: {
+        flexGrow: 1,
     },
     drawer: {
         width: drawerWidth,
@@ -46,9 +52,9 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        width: theme.spacing(7) + 1,
+        width: theme.spacing.unit * 7 + 1,
         [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9) + 1,
+            width: theme.spacing.unit * 9 + 1,
         },
     },
     grow: {
@@ -62,16 +68,16 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing.unit * 2,
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
+            marginLeft: theme.spacing.unit * 3,
             width: 'auto',
         },
     },
     searchIcon: {
-        width: theme.spacing(9),
+        width: theme.spacing.unit * 9,
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
@@ -84,10 +90,10 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
     },
     inputInput: {
-        paddingTop: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        paddingLeft: theme.spacing(10),
+        paddingTop: theme.spacing.unit,
+        paddingRight: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit * 10,
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
@@ -113,14 +119,14 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
         padding: '0 8px',
+        justifyContent: 'flex-end',
         ...theme.mixins.toolbar,
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: theme.spacing.unit * 3,
     },
-}));
+});
 
-export default useStyles
+export default styles

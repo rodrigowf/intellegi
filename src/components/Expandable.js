@@ -24,7 +24,7 @@ const styles = theme => ({
         },
     },
     ementaTextExpanded: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing.unit,
         color: grey[700],
     },
     expansionButton: {

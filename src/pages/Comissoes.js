@@ -26,10 +26,10 @@ const styles = function (theme) {
             backgroundColor: grey[300],
         },
         margin: {
-            margin: theme.spacing(1),
+            margin: theme.spacing.unit,
         },
         extendedIcon: {
-            marginRight: theme.spacing(1),
+            marginRight: theme.spacing.unit,
         },
         lightTooltip: {
             // backgroundColor: theme.palette.common.white,
@@ -56,7 +56,7 @@ class Comissoes extends React.Component {
             if(this.props.searchFilter.includes(prevProps.searchFilter)) {
                 this.setState({
                     comissoesFiltrado: this.state.comissoesFiltrado.filter(
-                        comissao => comissao.nome.includes(this.props.searchFilter)
+                        comissao => comissao.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                         //TODO resolver acentos que não estão funcionando!! (erro de charset)
                     )
                 });
@@ -64,7 +64,7 @@ class Comissoes extends React.Component {
             else { // Caso tenha sido apagado algo (na string de busca)...
                 this.setState({
                     comissoesFiltrado: comissoes.filter(
-                        comissao => comissao.nome.includes(this.props.searchFilter)
+                        comissao => comissao.nome.toLowerCase().includes(this.props.searchFilter.toLowerCase())
                     )
                 });
             }
