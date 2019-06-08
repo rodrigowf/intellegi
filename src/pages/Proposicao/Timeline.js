@@ -46,7 +46,7 @@ class Timeline extends Component {
 
     render() {
         // let { statusList } = this.state;
-        const { classes, currentStatus } = this.props;
+        const { classes } = this.props;
 
         //TODO Trocar essa string que adiciona um intermediario entre o cliente e o servidor da camara
         // baixando ele pro cliente antes de abrir:

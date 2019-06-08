@@ -62,6 +62,11 @@ class DeputadosPartidoCard extends React.Component {
 
     getPartido = () => {
         if (this.props.data.length > 0 && this.props.data[0] !== undefined) {
+            console.log(this.props.data[0].siglaPartido);
+            console.log(partidosList);
+            console.log(partidosList.filter((partido) => (
+                partido.sigla === this.props.data[0].siglaPartido
+            ))[0]);
             this.setState({ partido:
                 partidosList.filter((partido) => (
                     partido.sigla === this.props.data[0].siglaPartido
